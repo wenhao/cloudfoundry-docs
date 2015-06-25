@@ -1,6 +1,3 @@
-# cloudfoundry-docs
-Cloud Foundry最新中文文档
-
 ##此文档帮助你部署及管理Cloud Foundry
 
 ###cf命令行接口
