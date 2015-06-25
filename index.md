@@ -3,4 +3,5 @@
 ###cf命令行接口
 cf命令行接口使用指南
 
-**[安装cf命令行接口](./cf_command_line_interface/Installing the cf Command Line Interface.md)**
+* **[安装cf命令行接口](./cf_command_line_interface/Installing the cf Command Line Interface.md)**
+* **[开始使用cf CLI](./cf_command_line_interface/Getting Started with the cf CLI.md)**
