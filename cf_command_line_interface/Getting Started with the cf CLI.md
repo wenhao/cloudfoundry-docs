@@ -16,8 +16,8 @@
 >**error code: 10003, message: You are not authorized to perform the requested action**
 
 ###安装
-cf命令行工具(v6)的安装只需要简单的执行以下安装包即可，不再要求你需要先安装Ruby开发环境。你可以直接使用新的可执行文件或者使用本地安装包。安装详情请参见[安装cf命令行工具](./Installing the cf Command Line Interface.md)。
+cf命令行工具(v6)的安装只需要简单的执行安装包即可，不再要求你需要先安装Ruby开发环境。你可以直接使用新的可执行文件或者使用本地安装包。安装详情请参见[安装cf命令行工具](./Installing the cf Command Line Interface.md)。
 
-我们建议你时刻关注我们的[工具](https://console.run.pivotal.io/tools)何时发布最新版本，你可以下载任意你想更新的版本的可执行文件或者本地安装包。
+我们建议你时刻关注我们的[工具](https://console.run.pivotal.io/tools)何时发布最新版本，你可以下载任意你想要更新的版本的可执行文件或者本地安装包。
 
 ###本地化
