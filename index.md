@@ -1,4 +1,4 @@
-##此文档帮助你部署及管理Cloud Foundry
+##此文档帮助你如何部署并管理Cloud Foundry
 
 ###cf命令行工具
 cf命令行工具使用指南
