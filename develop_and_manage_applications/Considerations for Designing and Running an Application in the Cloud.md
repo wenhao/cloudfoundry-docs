@@ -57,3 +57,10 @@ log/
 
 ###运行多个服务实例以提高可用性
 
+当一个DEA升级完成后，优雅的关闭运行在上面的应用程序，然后再另外一个DEA上重新启动。为了避免在Cloud Foundry升级过程中应用程序不可访问的风险，你应当运行多个应用程序的实例。
+
+###使用Buildpacks
+
+一个buildpack是由一系列检测和配置脚本组成，它为应用程序提供运行所有需要的框架和运行时。当你部署应用程序时，Cloud Foundry会把buildpack安装在运行应用程序的微执行代理(Droplet Execution Agent, DEA)上.
+
+想了解更多参见[Buildpacks](http://docs.cloudfoundry.org/buildpacks/)主题。
