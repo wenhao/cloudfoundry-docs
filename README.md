@@ -19,12 +19,12 @@ cf命令行工具使用指南
 为开发人员提供的开发和管理应用指南
 
 * **[在云服务上设计与运行应用注意事项](./develop_and_manage_applications/Considerations for Designing and Running an Application in the Cloud.md)**
-* **[部署应用](./develop_and_manage_applications/)**
-* **[部署大型应用](./develop_and_manage_applications/)**
-* **[域名、子域名和路由选择](./develop_and_manage_applications/)**
-* **[识别Cloud Foundry服务的API地址](./develop_and_manage_applications/)**
-* **[使用部署清单部署应用](./develop_and_manage_applications/)**
-* **[Cloud Foundry环境变量](./develop_and_manage_applications/)**
-* **[使用蓝绿部署策略减少停机时间和风险](./develop_and_manage_applications/)**
-* **[Cloud Foundry应用日志](./develop_and_manage_applications/)**
-* **[应用部署和应用健康检查故障排除](./develop_and_manage_applications/)**
+* **[部署应用](./develop_and_manage_applications/Deploy an Application.md)**
+* **[部署大型应用](./develop_and_manage_applications/Deploying a Large Application.md)**
+* **[域名、子域名和路由选择](./develop_and_manage_applications/Domains, Subdomains, and Routes.md)**
+* **[识别Cloud Foundry服务的API地址](./develop_and_manage_applications/Identifying the API Endpoint for your Cloud Foundry Instance.md)**
+* **[使用部署清单部署应用](./develop_and_manage_applications/Deploying with Application Manifests.md)**
+* **[Cloud Foundry环境变量](./develop_and_manage_applications/Cloud Foundry Environment Variables.md)**
+* **[使用蓝绿部署策略减少停机时间和风险](./develop_and_manage_applications/Using Blue-Green Deployment to Reduce Downtime and Risk.md)**
+* **[Cloud Foundry应用日志](./develop_and_manage_applications/Application Logging in Cloud Foundry.md)**
+* **[应用部署和应用健康检查故障排除](./develop_and_manage_applications/Troubleshooting Application Deployment and Health.md)**

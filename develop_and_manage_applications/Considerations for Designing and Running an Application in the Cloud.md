@@ -50,7 +50,6 @@ Cloud Foundry支持会话关联或者称为粘性会话，前提是应用程序�
 ```
 temp/
 log/
-
 ```
 
 根据应用程序使用框架的不同，需要排除的文件类型也各不一样。针对不同的框架，github提供了很多```.gitignore```模板可以直接使用，参见[https://github.com/github/gitignore](https://github.com/github/gitignore)，非常好用。
