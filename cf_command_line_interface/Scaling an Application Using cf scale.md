@@ -14,7 +14,6 @@
 
 ```
 $ cf scale myApp -i 5
-
 ```
 
 ###纵向扩张
@@ -25,12 +24,10 @@ $ cf scale myApp -i 5
 
 ```
 $ cf scale myApp -k 512M
-
 ```
 
 使用```cf scale APP -m MEMORY```改变所有应用服务器的内存大小。```MEMORY ```参数必须是正整数，单位可以用**M**百万字节，或者**G**千兆字节。
 
 ```
 $ cf scale myApp -m 1G
-
 ```
