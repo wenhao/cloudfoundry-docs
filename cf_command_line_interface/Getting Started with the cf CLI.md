@@ -147,3 +147,40 @@ cf uups SERVICE_INSTANCE -l syslog://example.com
 ```
 
 ###域名、路由、组织与空间
+
+域名、路由、组织与空间之间的关系，在cf命令行工具(v6)中得以简化。
+
+* 每一个域名都对应一个组织。
+* 路由任然从属于空间和应用。
+
+以前，路由的URL由```HOSTNAME.DOMAIN```组成，如果你不提供主机名称(也就是子域名)，路由的URL就默认由```APPNAME.DOMAIN```组成。
+
+cf命令行工具(v6)分开管理私有域名和共享域名，并且只有管理员才能管理共享域名。
+
+对于域名，cf命令行工具(v6)同时支持新旧版本的```cf_release```。
+
+>注意：```map-domain```和```unmap-domain```在新版中不在支持。
+
+用于管理域名的命令如下：
+
+* ```cf create-domain``` —— 创建域名。
+* ```cf delete-domain``` —— 删除域名。
+* ```cf create-shared-domain``` —— 共享域名，仅限管理员。
+* ```cf delete-shared-domain``` —— 删除共享域名，仅限管理员。
+
+用户管理路由的命令如下：
+
+* ```cf create-route``` —— 创建路由。
+* ```cf map-route``` —— 映射路由。如果应用之前没有映射路由，则先创建再映射。
+* ```cf unmap-route``` —— 解映射路由。
+* ```cf delete-route``` —— 删除路由。
+
+##### 映射路由
+
+1. 使用```cf create-domain```先在某个组织中创建一个原本不存在或者没有被共享的域名
+2. 使用```cf map-route```映射此域名到某个应用，再使用```-n HOSTNAME```选项为每个路由指定一个唯一的主机名称。
+
+>注意：你可以在同一个空间里面映射某个路由到多个应用。想了解更多请参见[蓝绿部署](http://docs.cloudfoundry.org/devguide/deploy-apps/blue-green.html)。
+
+###用户与角色
+
