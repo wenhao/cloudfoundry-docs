@@ -67,3 +67,47 @@ cf login [-a API_URL] [-u USERNAME] [-p PASSWORD] [-o ORG] [-s SPACE]
 默认情况下，```config.json```保存在```~/.cf```目录下。通过设置环境变量```CF_HOME```，你可以蒋此文件保存到任意位置。
 
 ###部署
+在cf命令行工具(v6)中，```push```更为快捷简单。
+
+* ```APP```，所部署应用的名称，这是你唯一需要提供的参数而且不需要添加额外的标志。如果你的部署清单文件中已经包含了应用的名称，就可以直接忽略此参数。
+* 大多数的命令行参数都有单个字符的别名。例如，参数主机名称或子域名可以用```-n```代替```--host```。
+* 冗余的交互模式不再存在，更加简化。
+* 创建清单不再繁琐。详情请参见[部署应用清单](http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html)。
+* 在创建服务的时候不再需要push或者在清单中注明。如果想了解更多关于如何创建服务请参见[用户提供服务](http://docs.cloudfoundry.org/devguide/installcf/whats-new-v6.html#user-provided)。
+* ```-m```内存大小参数需要注明单位：```M```，```MG```，```G```或者```GB```，大小写皆可。
+
+cf命令行工具(v6)添加了一些新的参数：
+
+* ```-t```(超时时间)允许设置项目启动时间，最大180秒。
+* ```--no-manifest```强制忽略已存在的部署清单。
+* ```--no-hostname```在没有主机名称的情况下，可以用域名指定一个路由。
+* ```--no-route```不适用当前路由而使用自定义路由。在部署产品应用时，可以使用此参数。
+
+用法：
+
+```
+cf push APP [-b URL] [-c COMMAND] [-d DOMAIN] [-i NUM_INSTANCES] [-m MEMORY] /
+[-n HOST] [-p PATH] [-s STACK] [--no-hostname] [--no-route] [--no-start]
+
+```
+
+可选参数有：
+
+* ```-b``` ——自定义buildpack地址，例如[https://github.com/heroku/heroku-buildpack-play.git](https://github.com/heroku/heroku-buildpack-play.git)或者 [https://github.com/heroku/heroku-buildpack-play.git#stable](https://github.com/heroku/heroku-buildpack-play.git#stable)选择```stable```分支。
+* ```-c``` ——启动应用。
+* ```-d``` ——域名，例如：```example.com```。
+* ```-f``` ——替代```--manifest```。
+* ```-i``` ——启动实例的数量。
+* ```-m``` ——内存的大小，例如：256，1G，1024M等等。
+* ```-n``` ——主机名称，例如：```my-subdomain```。
+* ```-p``` ——应用文件路径。
+* ```-s``` ——使用栈。
+* ```-t``` ——启动超时时间，单位秒。
+* ```--no-hostname``` ——应用的根域名(新)。
+* ```--no-manifest``` ——忽略已存在的部署清单。
+* ```--no-route``` ——不为当前应用分配路由(新)。
+* ```--no-start``` ——部署之后不启动应用。
+
+>注意：```--no-route```选项会移除已经部署应用的路由配置。
+
+###用户提供服务实例
