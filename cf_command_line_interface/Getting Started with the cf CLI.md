@@ -184,3 +184,17 @@ cf命令行工具(v6)分开管理私有域名和共享域名，并且只有管�
 
 ###用户与角色
 
+关于用户的命令：
+
+* ```cf org-users``` —— 以角色分组，列出组织中所有的用户。
+* ```cf space-users``` —— 以角色分组，列出空间中所有的用户。
+
+关于用户角色的命令(仅限管理员)：
+
+* ```cf set-org-role``` —— 给用户分配特定的组织角色。可用的角色有：```OrgManager```，```BillingManager```和```OrgAuditor```。
+* ```cf unset-org-role``` —— 删除用户的组织角色。
+* ```cf set-space-role``` —— 给用户分配特定的空间角色。可用的角色有：
+```SpaceDeveloper```和```SpaceAuditor```。
+* ```cf unset-space-role``` 删除用户的空间角色。
+
+###统一的标准帮助你更高效的工作
