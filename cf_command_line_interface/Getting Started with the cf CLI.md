@@ -198,3 +198,79 @@ cf命令行工具(v6)分开管理私有域名和共享域名，并且只有管�
 * ```cf unset-space-role``` 删除用户的空间角色。
 
 ###统一的标准帮助你更高效的工作
+
+在cf命令行工具中，我们立志于帮助运维和开发人员创建更为简单高效的命令。
+
+cf命令行工具中的命令更简单有意义：
+
+* 必须参数没有任何标志。
+* 可选参数都具有标志。
+* 必须参数不止一个时，不能颠倒顺序。
+* 多个可选参数可以以任意顺序排列。
+
+例如：```cf create-service```，它需要三个参数而且必须按照```SERVICE```、```PLAN```和```SERVICE_INSTANCE```的顺序排列。再者，```cf push```命令需要一个必选参数和多个可选参数，对于可选参数可以以任何顺序排列。
+
+命令行的名字尽量简单一看即懂，例如：
+
+* ```cf map-route```可以用```cf map```代替。
+* ```cf marketplace```可以用```cf m```代替。
+
+开发人员常用到的```cf curl```命令在cf命令行工具(v6)中又很大改进。
+
+* ```curl```自动使用你登陆之后的身份验证。
+* ```curl```使用方法被尽可能的简化为类似于UNXI的模式。
+
+####新的别名和命令行更为规范
+
+cf命令行工具(v6)中添加的别名及命令行使其更加的简单易懂。
+
+cf命令行工具(v6)使用单字符别名。例如：
+
+* ```cf p```是```cf push```的别名。
+* ```cf t```是```cf target```的别名。
+
+cf命令行工具(v6)提供更为流畅的线性命令行规范：
+
+* 用户参数全大写，例如：```cf push APP```。
+* 可选参数包含标识符和中括号，例如：
+```
+cf create-route SPACE DOMAIN [-n HOSTNAME]
+```
+
+执行```cf help```可以查看所有的cf命令行及使用帮助。执行```cf <command-name> -h```查看某个特定命令行的使用方法(包含别名)，例如：
+
+```
+ $ cf p -h
+    NAME:
+       push - Push a new app or sync changes to an existing app
+
+    ALIAS:
+       p
+
+    USAGE:
+       Push a single app (with or without a manifest):
+       cf push APP [-b BUILDPACK_NAME] [-c COMMAND] [-d DOMAIN] [-f MANIFEST_PATH]
+       [-i NUM_INSTANCES] [-m MEMORY] [-n HOST] [-p PATH] [-s STACK] [-t TIMEOUT]
+       [--no-hostname] [--no-manifest] [--no-route] [--no-start]
+
+       Push multiple apps with a manifest:
+       cf push [-f MANIFEST_PATH]
+
+    OPTIONS:
+       -b             Custom buildpack by name (e.g. my-buildpack) or GIT URL
+                      (e.g. https://github.com/heroku/heroku-buildpack-play.git)
+       -c             Startup command, set to null to reset to default start command
+       -d             Domain (e.g. example.com)
+       -f             Path to manifest
+       -i             Number of instances
+       -m             Memory limit (e.g. 256M, 1024M, 1G)
+       -n             Hostname (e.g. my-subdomain)
+       -p             Path of app directory or zip file
+       -s             Stack to use
+       -t             Start timeout in seconds
+       --no-hostname    Map the root domain to this app
+       --no-manifest    Ignore manifest file
+       --no-route        Do not map a route to this app
+       --no-start        Do not start an app after pushing
+
+```
