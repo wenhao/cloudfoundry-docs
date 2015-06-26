@@ -110,4 +110,40 @@ cf push APP [-b URL] [-c COMMAND] [-d DOMAIN] [-i NUM_INSTANCES] [-m MEMORY] /
 
 >注意：```--no-route```选项会移除已经部署应用的路由配置。
 
-###用户提供服务实例
+###用户自定义服务实例
+cf命令行工具(v6)提供了一些新的命令行来创建和更新用户自定义服务实例。你有三种方式来运行这些命令：交互式的，非交互式的，或者如[RFC 6587](http://tools.ietf.org/html/rfc6587)所提到的通过使用第三方日志管理系统。当你使用第三方日志系统，cf会根据[RFC 5424](http://tools.ietf.org/html/rfc5424)规范自动发送格式化后的日志信息。
+
+创建完成之后，可使用```cf bind-service```命令把此服务实例与现有的应用绑定，解绑定可以使用```cf unbind-service```，重命名此服务实例使用```cf rename-service```，删除服务实例```cf delete-service```。
+
+####创建用户自定义服务命令
+```create-user-provided-service```别名是```cups```.
+
+交互式的方式创建服务实例，使用```-p```选项，不同的服务之间使用```,```逗号隔开。执行此命令之后，cf命令行工具会依次提示你如何创建每一个服务。
+```
+cf cups SERVICE_INSTANCE -p "host, port, dbname, username, password"
+```
+
+非交互式的方式创建服务实例，在使用```-p```选项的时候，参数以**JSON**的形式提供。
+```
+cf cups SERVICE_INSTANCE -p '{"username":"admin","password":"pa55woRD"}'
+```
+
+创建服务实例时集成第三方日志管理系统，使用```-l SYSLOG_DRAIN_URL```选项。
+```
+cf cups SERVICE_INSTANCE -l syslog://example.com
+```
+
+####更新用户自定义服务命令
+```update-user-provided-service```别名是```uups```。你可以使用```cf update-user-provided-service```更新服务实例中的一个或多个属性。不支持的属性则不会更新。
+
+非交互式的方式更新服务实例，在使用```-p```选项的时候，参数以**JSON**的形式提供。
+```
+cf uups SERVICE_INSTANCE -p '{"username":"USERNAME","password":"PASSWORD"}'
+```
+
+更新服务实例时集成第三方日志管理系统，使用```-l SYSLOG_DRAIN_URL```选项。
+```
+cf uups SERVICE_INSTANCE -l syslog://example.com
+```
+
+###域名、路由、组织与空间
