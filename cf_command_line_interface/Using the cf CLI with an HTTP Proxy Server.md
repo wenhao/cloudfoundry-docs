@@ -43,6 +43,7 @@ $ export HTTP_PROXY=http://my.proxyserver.com:8080
 永久的改变此变量的值，只需要把此代码加到特定的文件里面即可。例如，在bash中，找到**.bash_profile**或者**.bashrc**文件，加入如下代码：
 
 ```
+
 http_proxy=http://username:password@hostname:port;
 export $HTTP_PROXY
 
@@ -58,20 +59,16 @@ export $HTTP_PROXY
 
 	![步骤2](../../images/cf_windwos_http_proxy_steps2.png)
 
-
 3. 在弹出来的系统属性窗口上，选择**高级**标签，然后点击**环境变量**设置。
 
 	![步骤3](../../images/cf_windwos_http_proxy_steps3.png)
-
 
 4. 在弹出来的环境变量窗口上，找到**用户变量设置**，然后点击**创建**。
 
 	![步骤4](../../images/cf_windwos_http_proxy_steps4.png)
 
-
 5. 在弹出来的窗口，输入新加入环境变量的名字**HTTP_PROXY**并设置其值。
 
 	![步骤5](../../images/cf_windwos_http_proxy_steps5.png)
-
 
 6. 最后单击**确定**保存，设置生效。
