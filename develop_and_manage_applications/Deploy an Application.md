@@ -91,3 +91,65 @@ export LANG=en_US.UTF-8
 
 ###步骤5：部署应用程序
 
+在不指定部署清单的情况下执行以下命令部署应用程序：
+
+```
+cf push APP-NAME
+```
+如果在部署清单里面设置了应用程序的名称，就可以简化此命令为```cf push```。参见[使用部署清单部署应用](./Deploying with Application Manifests.md)。
+
+部署时，你只需要提供应用程序的名称，```cf push```命令会自动为你设置服务实例的数量，内存的大小及应用程序所需要的任何属性。你也可以命令行参数设定你想要修改的任意属性。
+
+下面的脚本说明当执行```cf push```命令时，Cloud Foundry为应用程序设置了那些默认值。
+>注意：当你部署应用程序的时，避免使用一些广泛的名字如```my-app```。Cloud Foundry会使用应用程序的名称组成路由的一部分，如果名称不是唯一的，部署将会失败。
+
+```
+$ cf push my-app
+Creating app my-app in org example-org / space development as a.user@example.com...
+OK
+
+Creating route my-app.example.com...
+OK
+
+Binding my-app.example.com to my-app...
+OK
+
+Uploading my-app...
+Uploading app: 560.1K, 9 files
+OK
+
+Starting app my-app in org example-org / space development as a.user@example.com...
+-----> Downloaded app package (552K)
+OK
+-----> Using Ruby version: ruby-1.9.3
+-----> Installing dependencies using Bundler version 1.3.2
+       Running: bundle install --without development:test --path
+         vendor/bundle --binstubs vendor/bundle/bin --deployment
+       Installing rack (1.5.1)
+       Installing rack-protection (1.3.2)
+       Installing tilt (1.3.3)
+       Installing sinatra (1.3.4)
+       Using bundler (1.3.2)
+       Updating files in vendor/cache
+       Your bundle is complete! It was installed into ./vendor/bundle
+       Cleaning up the bundler cache.
+-----> Uploading droplet (23M)
+
+1 of 1 instances running
+
+App started
+
+Showing health and status for app my-app in org example-org / space development as a.user@example.com...
+OK
+
+requested state: started
+instances: 1/1
+usage: 1G x 1 instances
+urls: my-app.example.com
+
+     state     since                    cpu    memory        disk
+#0   running   2014-01-24 05:07:18 PM   0.0%   18.5M of 1G   52.5M of 1G
+```
+
+###步骤6：(可选)配置服务连接
+
