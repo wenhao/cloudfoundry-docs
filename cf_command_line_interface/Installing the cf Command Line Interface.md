@@ -25,4 +25,4 @@
 ###下一步
 验证安装是否正确，打开你的终端并执行``` cf ```命令。如果你安装正确，屏幕上就会出现cf的使用说明。
 
-想了解更多关于如何使用cf命令行工具(verions 6), 请参照[Getting Started with cf CLI v6](./Getting Started with the cf CLI.md)。
+想了解更多关于如何使用cf命令行工具(verions 6), 请参照[开始使用cf命令行工具](./Getting Started with the cf CLI.md)。
