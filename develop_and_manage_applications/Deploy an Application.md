@@ -14,3 +14,9 @@
 * 选择最适合的“微执行代理”(droplet execution agent, DEA)执行“droplet”。
 * 启动应用程序。
 
+应用程序需要用到的一些服务，例如，数据库、消息服务或者邮箱服务，只有在你部署了应用之后，才能够绑定这些服务到你的应用程序。详情参见[服务概述](http://docs.cloudfoundry.org/devguide/services/)主题。
+
+###步骤1：部署准备
+
+在你部署应用程序到Cloud Foundry之前，确保：
+
