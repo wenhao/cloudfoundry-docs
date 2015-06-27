@@ -20,3 +20,32 @@
 
 在你部署应用程序到Cloud Foundry之前，确保：
 
+* 应用程序对云服务友好。Cloud Foundry对文件存储、HTTP会话和端口有要求，部署之前对应用程序做相应的修改。
+* 上传应用程序所有的资源文件。例如，数据库驱动。
+* 多余的文件或者工件最好排除。你应该尽可能的排除不需要上传的文件，特别对于大型应项目。
+* 创建应用程序服务所需要的所有服务实例。
+* Cloud Foundry实例支持你将要部署的应用程序类型或者外部可用的buildpack来处理你的应用程序。
+
+关于准备部署你的应用程序，请参见：
+
+* [在云服务上设计与运行应用注意事项](./Considerations for Designing and Running an Application in the Cloud.md)
+* [Buildpacks]()
+
+###步骤2：明确你的认证信息和目标地址
+
+在部署你的应用程序到Cloud Foundry之前，你需要知道：
+
+* 你的Cloud Foundry实例的API地址。换言之目标URL，参见[the URL of the Cloud Controller in your Cloud Foundry instance](http://docs.cloudfoundry.org/running/cf-api-endpoint.html)。
+* 你的Cloud Foundry实例用户名和密码。
+* 应用程序部署的组织和空间。Cloud Foundry工作区由不同组织构成，而组织则由不同的空间组成。Cloud Foundry的用户，可以任意访问一个或多个不同的组织和空间。
+
+###步骤3：(可选)配置域名
+
+Cloud Foundry通过路由分发请求到应用程序，应用程序URL由主机名词和域名组成。
+
+* 应用程序的名词是默认的应用程序主机名称。
+* 每个部署到空间的应用程序都有一个默认域名。你可以不适用默认的域名，在部署应用程序的时候可以使用自定义的域名，并且在组织中注册此域名映射到此应用程序空间。
+
+更多关于域名，参见[Create Domains and Routes](http://docs.cloudfoundry.org/devguide/deploy-apps/domains-routes.html)。
+
+###步骤4：部署选项
