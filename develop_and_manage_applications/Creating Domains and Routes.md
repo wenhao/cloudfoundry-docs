@@ -125,5 +125,120 @@ Wildcard CNAME | sample  | *.example.com.  | 你可以使用通配符配置你�
 
 ###管理你的域名
 
+####列出某个组织的所有域名
+
+你可以使用```cf domains```查看某个组织的所有可用域名。
+
+在下面的例子当中，有两个可用的域名：一个系统范围默认的域名“example.com”和自定义的“example.org”域名。
+
+```
+$ cf domains
+Getting domains in org my-org as user@example.org... OK
+
+name           status
+example.com    shared
+example.org    owned
+```
+
+####分配域名和主机
+
+你可以使用命令行或者部署清单文件分配域名或者主机。
+
+#####使用命令行分配
+
+当你执行```cf push```时，你可以选择性的为应用程序设置域名和主机。
+
+* **域名**：使用```-d```参数指定某个组织的域名。
+* **主机**：使用```-n```参数主机字符串。
+
+Cloud Foundry为应用程序创建的路由为：```myapp.example.org```。
+
+```
+$ cf push myapp -d example.org -n myapp
+```
+#####使用部署清单分配
+
+当你创建或者编辑你应用程序的部署清单文件时，你可以指定```host```和```domain```属性来分配应用程序的主机名称和域名。更多的信息，参见[应用程序部署清单](http://docs.cloudfoundry.org/devguide/deploy-apps/manifest.html)。
+
+####删除域名
+
+你可以使用```cf delete-domain```命令在Cloud Foundry上删除域名。
+
+```
+$ cf delete-domain example.org
+```
 
 ###管理你的路由
+
+####列出所有路由
+
+你可以执行```cf routes```命令列出当前空间的所有路由。注意主机名称有域名分组。
+
+例如：
+
+```
+$ cf routes
+Getting routes as user@example.org ...
+
+host                     domain          apps
+myapp                    example.org     myapp1
+myapp2
+1test                    example.com     1test
+sinatra-hello-world      example.com     sinatra-hello-world
+sinatra-to-do            example.com     sinatra-to-do
+```
+
+####创建路由
+
+使用```cf create-route```命令创建路由并于之后需要用到的空间关联。你可以提供可选参数```-n HOSTNAME```在同一域名下为每一个路由指定一个唯一的主机名称。
+
+例如， 以下命令在“development”空间内创建“myapp.example.org”路由：
+
+```
+$ cf create-route development example.org -n myapp
+```
+
+如果你是管理员，你可以使用通配符如```*```在指定主机名称，对于主机名称，符号```*```可以匹配你域名下所有的URL。
+>注意：在命令行中```*```必须使用双引号。
+
+例如，以下命令在空间“development”中创建使用通配符的路由“*.example.org”。
+
+```
+$ cf create-route development example.org -n "*"
+```
+
+####分配或改变路由
+
+使用```cf map-route```命令为某个应用程序分配或改变路由。主机名称是可选的。如果路由不存在，运行此命令则会先创建路由然后再映射到应用程序。
+
+例如， 以下命令映射路由“myapp.example.org”到“myapp”应用程序。
+
+```
+$ cf map-route myapp example.org -n myapp
+```
+使用通配符映射路由会变成一个备选方案如果用户输入的访问地址不能匹配其他所有路由配置。例如，如果用户输入“myap.example.org”试图访问绑定到“myapp.example.org”的应用程序，用户访问的应用程序绑定的是“*.example.org”。
+
+以下命令映射路由“*.example.org”到应用程序“myfallbackapp”:
+```
+$ cf map-route myfallbackapp example.org -n *
+```
+
+>注意：你可以在同一空间中映射某个路由到多个应用程序。了解更多信息请参见[蓝绿部署](http://docs.cloudfoundry.org/devguide/deploy-apps/blue-green.html)。
+
+当你映射一个正在运行的应用程序时，新的路由规则只有在应用程序重启之后才会生效。
+
+####删除路由
+
+你可以使用```cf unmap-route```命令删除一个程序的路由。解映射之后，该路由还可以在此空间内继续使用。
+
+```
+$ cf unmap-route myapp example.org -n myapp
+```
+
+你可以使用```cf delete-route```命令从某个空间中删除某个路由。
+
+```
+$ cf delete-route example.org -n myapp
+```
+
+注意以上命令用来指定主机名称的参数```-n```是可选的。
