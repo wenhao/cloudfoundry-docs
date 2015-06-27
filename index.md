@@ -18,7 +18,7 @@ cf命令行工具使用指南
 * **[在云服务上设计与运行应用注意事项](./develop_and_manage_applications/Considerations for Designing and Running an Application in the Cloud.md)**
 * **[部署应用](./develop_and_manage_applications/Deploy an Application.md)**
 * **[部署大型应用](./develop_and_manage_applications/Deploying a Large Application.md)**
-* **[域名、子域名和路由选择](./develop_and_manage_applications/Domains, Subdomains, and Routes.md)**
+* **[域名、子域名和路由选择](./develop_and_manage_applications/Creating Domains and Routes.md)**
 * **[识别Cloud Foundry服务的API地址](./develop_and_manage_applications/Identifying the API Endpoint for your Cloud Foundry Instance.md)**
 * **[使用部署清单部署应用](./develop_and_manage_applications/Deploying with Application Manifests.md)**
 * **[Cloud Foundry环境变量](./develop_and_manage_applications/Cloud Foundry Environment Variables.md)**
