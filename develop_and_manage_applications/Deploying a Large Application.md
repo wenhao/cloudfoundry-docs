@@ -26,4 +26,18 @@ Cloud Foundry最大支持1 GB的应用程序。
 	* ```cf push -t TIMEOUT```：控制应用程序启动的最大等待时间，使用此设置，cf会忽略在部署清单中的```CF_STARTUP_TIMEOUT```环境变量配置，单位秒。
 
 更多关于使用cf命令行工具部署应用程序，参见开始使用cf命令行工具中的[部署](../f_command_line_interface/etting Started with the cf CLI.md#部署)主题。
->注意：
+>注意：有时即便cf命令行工具报出```App failed```错误消息，你的应用程序可能已经启动成功，这是因为你在命令行设置的超时时间可能与管理员在部署清单设置的值不一样。举个例子，管理员设置应用程序启动时间限制为180秒。你在部署清单中设置的时间则为120秒，同时你在命令行中使用的超时时间为60秒然后开始部署。在这种情况下，即便命令行报错，你的应用程序可能已部署成功因为没有超过管理员设置的最大时间。执行```cf apps APP_NAME```查看应用程序的状态。
+
+###默认配置及限制汇总表
+
+下表是在Cloud Foundry部署大型应用所用到的一些默认值。
+
+| **设置**  | **说明** |
+| ------------- | ------------- |
+| App Package Size  | Maximum: 1 GB  |
+| Authorization Token Grace Period  | Default: 20 minutes, minimum  |
+| ```CF_STAGING_TIMEOUT```  | CLI environment variable, Default: 15 minutes  |
+| ```CF_STARTUP_TIMEOUT```  | CLI environment variable, Default: 5 minutes  |
+| ```cf push -t TIMEOUT```  | App start timeout maximum, Default: 60 seconds  |
+| Disk Space Allocation  | Default: 1024 MB  |
+| Internet Connection Speed  | Recommended Minimum: 874 KB/s  |
