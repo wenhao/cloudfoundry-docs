@@ -61,3 +61,43 @@ CNAME | www  | foo.cfapps.io  |
 
 ###创建父域名
 
+域名的不同部分，“example.com”是子域名“myapp”的父级域名。
+
+####在DNS提供商配置CNAME记录
+
+参见[在DNS提供商配置CNAME记录](./Creating Domains and Routes.md#在DNS提供商配置CNAME记录)。
+
+####使用私有或共享父级域名配置你的应用程序
+
+父级域名必须满足以下需求：
+
+* **私有父级域名**：创建的私有的域名必须是私有子域名的父级域名。
+* **共享父级域名**：创建的共享域名可以是共享或者私有子域名的父级域名。
+
+###在组织之间共享私有域名
+
+在组织管理器里面，你可以配置某个私有域名用于多个组织。你必须有组织管理权限。选择属于你的某个组织。
+
+从Cloud Controller：
+
+* ```PUT /v2/organizations/:GUID/private_domains/:PRIVATE_DOMAIN_GUID```关联私有域名到此组织。你不能```put```到你自己的组织。
+* ```DELETE /v2/organizations/:GUID/private_domains/:PRIVATE_DOMAIN_GUID```与此组织解关联私有域名。你不能删除自己的组织。
+* ```GET /v2/private_domains/:GUID/shared_organizations```列出属于此私有域名的所有共享组织。
+
+###使用私有或共享子域名
+
+在Cloud Foundry中，域名存在多个部分如在“myapp.example.com”包含子域名“myapp”。在这种情况下，“example.com”是“myapp”的父级域名。在域名“test.myapp.example.org”中，“test”是子域名而父级域名是“myapp.example.org”
+
+####在DNS提供商配置CNAME记录
+
+使用CNAME记录配置域名。
+
+CNAME记录规则如下所示：
+
+**记录**  | **名称** | **目标** | **说明**
+------------- | ------------- | ------------- | -------------
+CNAME | test  | foo.example.com.  | 参看你所使用DNS提供商的文档决定是否需要以```.```结尾。
+Wildcard CNAME | sample  | *.example.com.  | 你可以使用通配符配置你的CNAME记录来映射你所有的子域名到父级域名。每一个单独的子域名配置优先于通配符配置。
+
+####使用私有或者共享子域名配置应用程序
+
