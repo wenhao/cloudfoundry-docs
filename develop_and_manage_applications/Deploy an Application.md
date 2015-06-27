@@ -153,3 +153,15 @@ urls: my-app.example.com
 
 ###步骤6：(可选)配置服务连接
 
+如果你要绑定服务到一个部署了的应用程序，你需要为你的应用程序配置服务的URL和认证信息。更多的详细信息，参见不同应用程序框架具体的文档：
+
+* Ruby
+* Node.js
+* Spring
+* Grails
+
+###步骤7：部署故障排除
+
+如果你的应用程序不能在Cloud Foundry上启动，请先确保你的应用程序能够在你本地正常运行。
+
+你可以使用```cf```命令排除你的故障。参见[应用部署和应用健康检查故障排除](./Troubleshoot Application Deployment and Health.md)。
