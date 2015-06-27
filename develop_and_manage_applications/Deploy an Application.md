@@ -63,3 +63,14 @@ Cloud Foundry通过路由分发请求到应用程序，应用程序URL由主机�
 
 ####设置部署选项
 
+你可以使用命令行或者部署清单文件定义部署选项，或者同时使用两种方式。参见[使用部署清单部署应用](./Deploying with Application Manifests.md)了解如何在部署的时候使用命令行例如```cf scale```或者部署清单文件。
+
+当你部署一个正在运行的应用程序时，Cloud Foundry首先会停止此应用程序的所有服务实例然后再部署。执行```cf push```的时候，用户会看到“404 not found”错误消息。部署的时候停掉所有的服务实例是为了避免应用程序的不同版本同时运行。举个最坏的例子，如果在部署的时候更新数据库脚本，运行着的应用程序就会崩溃而且使用的用户也可能丢失数据。
+
+Cloud Foundry上传所有应用程序文件除了一些版本控制器的文件例如```.svn```、```.git```和```.darcs```。可以在```.cfignore```定义其他想要排除的文件并保存此文件在你运行部署命令的目录下。此功能类似于```.gitignore```。更多详细参见[在云服务上设计与运行应用注意事项](./Considerations for Designing and Running an Application in the Cloud.md)中的[部署的时候忽略不需要的文件](./Considerations for Designing and Running an Application in the Cloud.md#部署的时候忽略不需要的文件)。
+
+更多关于部署清单文件参见[使用部署清单部署应用](Deploying with Application Manifests)主题。
+
+####设置环境变量
+
+
