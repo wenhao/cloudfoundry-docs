@@ -12,21 +12,18 @@ HTTP_PROXY是用代理服务器的主机名称或者IP地址写成URL的格式�
 
 ``` 
 http_proxy=http://proxy.example.com
-
 ```
 
 如果代理服务器需要用户名及密码登陆，必须包含登陆信息：
 
 ```
 http_proxy=http://username:password@proxy.example.com
-
 ```
 
 如果代理服务器用到80以外的端口，必须包含端口信息：
 
 ```
 http_proxy=http://username:password@proxy.example.com:8080
-
 ```
 
 ###Mac OS或Linux设置代理
@@ -37,7 +34,6 @@ http_proxy=http://username:password@proxy.example.com:8080
 
 ```
 $ export HTTP_PROXY=http://my.proxyserver.com:8080
-
 ```
 
 永久的改变此变量的值，只需要把此代码加到特定的文件里面即可。例如，在bash中，找到**.bash_profile**或者**.bashrc**文件，加入如下代码：
@@ -46,7 +42,6 @@ $ export HTTP_PROXY=http://my.proxyserver.com:8080
 
 http_proxy=http://username:password@hostname:port;
 export $HTTP_PROXY
-
 ```
 
 ###Windows设置代理
