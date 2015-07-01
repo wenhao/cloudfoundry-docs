@@ -1,6 +1,6 @@
 ##部署应用
 
-*此文件假设你使用的cf命令行工具(v6)*
+*此文章假设你使用的cf命令行工具(v6)*
 
 >注意：对于采用不同语言及框架开发的应用程序，请参见更为详细完整的部署文档[buildpacks]()，例如[部署Ruby on Rails应用程序](http://docs.cloudfoundry.org/buildpacks/ruby/gsg-ror.html)指南。
 
