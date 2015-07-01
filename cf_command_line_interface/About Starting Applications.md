@@ -13,7 +13,7 @@
 2. 在部署清单里面添加```command```属性，例如：
 
 	```
-	command: node my-app.j
+	command: node my-app.js
 	```
 	
 3. 针对不同类型的应用，buildpack提供对应的启动命令行。
