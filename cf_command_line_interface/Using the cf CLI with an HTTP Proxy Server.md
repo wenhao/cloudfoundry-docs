@@ -39,7 +39,6 @@ $ export HTTP_PROXY=http://my.proxyserver.com:8080
 永久的改变此变量的值，只需要把此代码加到特定的文件里面即可。例如，在bash中，找到**.bash_profile**或者**.bashrc**文件，加入如下代码：
 
 ```
-
 http_proxy=http://username:password@hostname:port;
 export $HTTP_PROXY
 ```
