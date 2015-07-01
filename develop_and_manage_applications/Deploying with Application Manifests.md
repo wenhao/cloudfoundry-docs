@@ -17,7 +17,7 @@ $ cf push
 Using manifest file /path_to_working_directory/manifest.yml
 ```
 
-使用```-f``选项，跟路径但不包含文件名时，此路径目录下必须存在名为```manifest.xml```的文件。
+使用```-f```选项，跟路径但不包含文件名时，此路径目录下必须存在名为```manifest.xml```的文件。
 
 ```
 $ cf push -f ./some_directory/some_other_directory/
