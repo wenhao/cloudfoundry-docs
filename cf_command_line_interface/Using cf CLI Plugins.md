@@ -50,7 +50,6 @@ cf命令行工具v.6.7以上的版本才能使用插件。参见[安装cf命令�
 $ cf add-plugin-repo CF-Community http://plugins.cloudfoundry.org
 OK
 http://plugins.cloudfoundry.org/list added as 'CF-Community'
-
 ```
 
 ####列出所有可用的插件仓库
@@ -67,7 +66,6 @@ OK
 Repo Name      Url
 
 CF-Community   http://plugins.cloudfoundry.org 
-
 ```
 
 ###按照仓库分类列出所有的插件
