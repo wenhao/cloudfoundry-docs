@@ -4,7 +4,7 @@
 
 环境变量```HTTP_PROXY```是设置你代理服务器的主机名称或者IP地址。
 
-```HTTP_PROXY```是一个标准的环境变量。与其他环境变量一样，设置的方法取决于特定的操作系统。
+环境变量```HTTP_PROXY```是一个标准的环境变量。与其他环境变量一样，设置的方法取决于特定的操作系统。
 
 ###HTTP_PROXY的格式
 
@@ -53,22 +53,22 @@ export $HTTP_PROXY
 
 1. 点击任务栏左下角**开始**按钮，右键单击**我的电脑**并选择**属性**。
 
-	![步骤1](../../images/cf_windwos_http_proxy_steps1.png)
+	![步骤1](../images/cf_windwos_http_proxy_steps1.png)
 
 2. 在弹出来的控制面板窗口左侧，选择**高级系统设置**。
 
-	![步骤2](../../images/cf_windwos_http_proxy_steps2.png)
+	![步骤2](../images/cf_windwos_http_proxy_steps2.png)
 
 3. 在弹出来的系统属性窗口上，选择**高级**标签，然后点击**环境变量**设置。
 
-	![步骤3](../../images/cf_windwos_http_proxy_steps3.png)
+	![步骤3](../images/cf_windwos_http_proxy_steps3.png)
 
 4. 在弹出来的环境变量窗口上，找到**用户变量设置**，然后点击**创建**。
 
-	![步骤4](../../images/cf_windwos_http_proxy_steps4.png)
+	![步骤4](../images/cf_windwos_http_proxy_steps4.png)
 
 5. 在弹出来的窗口，输入新加入环境变量的名字**HTTP_PROXY**并设置其值。
 
-	![步骤5](../../images/cf_windwos_http_proxy_steps5.png)
+	![步骤5](../images/cf_windwos_http_proxy_steps5.png)
 
 6. 最后单击**确定**保存，设置生效。
