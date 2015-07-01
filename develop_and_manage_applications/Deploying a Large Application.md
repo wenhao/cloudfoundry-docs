@@ -34,10 +34,10 @@ Cloud Foundry最大支持1 GB的应用程序。
 
 | **设置**  | **说明** |
 | ------------- | ------------- |
-| App Package Size  | Maximum: 1 GB  |
-| Authorization Token Grace Period  | Default: 20 minutes, minimum  |
-| ```CF_STAGING_TIMEOUT```  | CLI environment variable, Default: 15 minutes  |
-| ```CF_STARTUP_TIMEOUT```  | CLI environment variable, Default: 5 minutes  |
-| ```cf push -t TIMEOUT```  | App start timeout maximum, Default: 60 seconds  |
-| Disk Space Allocation  | Default: 1024 MB  |
-| Internet Connection Speed  | Recommended Minimum: 874 KB/s  |
+| 应用程序部署包  | 最大: 1 GB  |
+| 授权令牌有效时间  | 默认: 20分钟, 最小值  |
+| ```CF_STAGING_TIMEOUT```  | 命令行环境变量, 默认: 15分钟  |
+| ```CF_STARTUP_TIMEOUT```  | 命令行环境变量, 默认: 5分钟  |
+| ```cf push -t TIMEOUT```  | 应用程序启动超时最大时间, 默认: 60秒  |
+| 磁盘大小  | 默认: 1024 MB  |
+| 网络连接速度  | 建议最小速度: 874 KB/s  |
