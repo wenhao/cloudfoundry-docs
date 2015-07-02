@@ -107,3 +107,39 @@ cf push my-app
 使用命令行选项覆盖buildpack的属性是```-b```。	
 ####命令行属性
 
+某些开发语言或者框架需要使用自定义的命令在启动应用程序。是否需要提供自定义的启动参数，请参考[buildpack](http://docs.cloudfoundry.org/buildpacks/)文档。
+
+你也可以在部署清单文件或者命令行选项中提供自定义的启动命令。
+
+在应用程序的部署清单文件中添加特定的启动命令，在```command: START-COMMAND```上添加，如下：
+
+```
+---
+  ...
+  command: bundle exec rake VERBOSE=true
+```
+
+对于命令行选项，使用```-c```指定自定义的启动命令，如下：
+
+```
+$ cf push my-app -c "bundle exec rake VERBOSE=true"
+```
+
+>注意：在使用```cf push```命令时，如果```-c```选项值为‘null’，则会使用buildpack的启动命令。更多信息参考[关于启动应用](../cf_command_line_interface/About Starting Applications.md)
+
+####磁盘配额属性
+
+
+####域名属性
+
+
+####多个域名属性
+
+
+####服务实例数量属性
+
+
+####内存属性
+
+
+####主机属性
