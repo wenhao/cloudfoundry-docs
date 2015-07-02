@@ -129,12 +129,43 @@ $ cf push my-app -c "bundle exec rake VERBOSE=true"
 
 ####磁盘配额属性
 
+使用```disk_quota```属性指定需要给应用实例分配的磁盘大小。需要同时给定单位：```M```，```MB```，```G```或者```GB```，大小写都可以。
+
+```
+---
+  ...
+  disk_quota: 1024M
+```
+
+在命令行选项里面使用```-k```覆盖相应的配置。
 
 ####域名属性
 
+每一个使用```cf push```部署应用程序到特定Cloud Foundry服务实例，每一个Cloud Foundry服务实例可能都有一个有管理员配置的一个共享的域名。如果你不修改此默认域名，Cloud Foundry路由就会使用此域名把请求分发到你的应用程序。
+
+你可以使用```domain```属性自定义你想要的域名而不使用默认域名。
+
+```
+---
+  ...
+  domain: unique-example.com
+```
+
+在命令行选项里面使用```-d```覆盖相应的配置。
 
 ####多个域名属性
 
+使用```domains```属性指定多个域名配置。如果你同时使用```domain```和```domains```属性，Cloud Foundry会使用这两种配置的域名来做路由分发。
+
+```
+---
+  ...
+  domains:
+  - domain-example1.com
+  - domain-example2.org
+```
+
+命令行选项里面使用```-d```覆盖相应的配置。
 
 ####服务实例数量属性
 
