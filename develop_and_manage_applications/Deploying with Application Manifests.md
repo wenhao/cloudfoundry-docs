@@ -127,7 +127,7 @@ $ cf push my-app -c "bundle exec rake VERBOSE=true"
 
 >注意：在使用```cf push```命令时，如果```-c```选项值为‘null’，则会使用buildpack的启动命令。更多信息参考[关于启动应用](../cf_command_line_interface/About Starting Applications.md)
 
-####磁盘配额属性
+####磁盘配额(disk_quota)属性
 
 使用```disk_quota```属性指定需要给应用实例分配的磁盘大小。需要同时给定单位：```M```，```MB```，```G```或者```GB```，大小写都可以。
 
@@ -139,7 +139,7 @@ $ cf push my-app -c "bundle exec rake VERBOSE=true"
 
 在命令行选项里面使用```-k```覆盖相应的配置。
 
-####域名属性
+####域名(domain)属性
 
 每一个使用```cf push```部署应用程序到特定Cloud Foundry服务实例，每一个Cloud Foundry服务实例可能都有一个有管理员配置的一个共享的域名。如果你不修改此默认域名，Cloud Foundry路由就会使用此域名把请求分发到你的应用程序。
 
@@ -153,7 +153,7 @@ $ cf push my-app -c "bundle exec rake VERBOSE=true"
 
 在命令行选项里面使用```-d```覆盖相应的配置。
 
-####多个域名属性
+####多个域名(domains)属性
 
 使用```domains```属性指定多个域名配置。如果你同时使用```domain```和```domains```属性，Cloud Foundry会使用这两种配置的域名来做路由分发。
 
@@ -167,10 +167,44 @@ $ cf push my-app -c "bundle exec rake VERBOSE=true"
 
 命令行选项里面使用```-d```覆盖相应的配置。
 
-####服务实例数量属性
+####服务实例(instances)属性
+
+使用```instances```属性指定在部署的时候需要创建的应用服务实例的数量：
+
+```
+---
+  ...
+  instances: 2
+```
+
+为了提供更好的容错机制，我们建议你至少为一个应用程序创建两个服务实例。
+
+命令行选项里面使用```-i```覆盖相应的配置。
+
+####内存(memory)属性
+
+使用```memory```属性指定需要给应用实例分配的内存大小。需要同时给定单位：M，MB，G或者GB，大小写都可以。
+
+```
+---
+  ...
+  memory: 1024M
+```
+
+默认的内存大小限制为1G. 如果你的应用实例不需要1G大小的内存空间，你可以定义一个更小的配额空间。
+
+命令行选项里面使用```-m```覆盖相应的配置。
+
+####主机(host)属性
 
 
-####内存属性
+####多个主机(hosts)属性
 
 
-####主机属性
+####无主机名(no-hostname)属性
+
+
+####随机路由(random-route)属性
+
+
+####路径(path)属性
