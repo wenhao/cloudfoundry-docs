@@ -94,5 +94,16 @@ cf push my-app
 
 ####buildpack属性
 
+如果你的应用程序需要自定义的buildpack，你可以使用```buildpack```属性在制定其名称或者URL：
 
+```
+---
+  ...
+  buildpack: buildpack_URL
+```
+
+>注意：命令```cf buildpacks```列出所有你可以在部署清单文件或者命令行选项中可以使用的buildpack。
+
+使用命令行选项覆盖buildpack的属性是```-b```。	
 ####命令行属性
+
