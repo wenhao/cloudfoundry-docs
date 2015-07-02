@@ -3,6 +3,19 @@ Cloud Foundry最新中文文档
 
 ##此文档帮助你理解如何部署并管理Cloud Foundry
 
+###Cloud Foundry概念
+
+解析Cloud Foundry组件工作原理。
+
+* **[Cloud Foundry概述](./cloud_foundry_concepts/Cloud Foundry Overview.md)**
+* **[Cloud Foundry组件](./cloud_foundry_concepts/Cloud Foundry Components.md)**
+* **[应用程序如何完成预处理](./cloud_foundry_concepts/How Applications are Staged.md)**
+* **[Cloud Foundry可伸缩性](./cloud_foundry_concepts/Scaling Cloud Foundry.md)**
+* **[组织，空间，角色与权限](./cloud_foundry_concepts/Orgs, Spaces, Roles, and Permissions.md)**
+* **[Cloud Foundry安全](./cloud_foundry_concepts/Cloud Foundry Security.md)**
+* **[堆栈](./cloud_foundry_concepts/Stacks.md)**
+* **[Cloud Foundry名词解释](./cloud_foundry_concepts/Cloud Foundry Glossary.md)**
+
 ###cf命令行工具
 
 cf命令行工具使用指南
@@ -28,16 +41,3 @@ cf命令行工具使用指南
 * **[使用蓝绿部署策略减少停机时间和风险](./develop_and_manage_applications/Using Blue-Green Deployment to Reduce Downtime and Risk.md)**
 * **[Cloud Foundry应用日志](./develop_and_manage_applications/Application Logging in Cloud Foundry.md)**
 * **[应用部署和应用健康检查故障排除](./develop_and_manage_applications/Troubleshooting Application Deployment and Health.md)**
-
-###Cloud Foundry概念
-
-解析Cloud Foundry组件工作原理。
-
-* **[Cloud Foundry概述](./cloud_foundry_concepts/Cloud Foundry Overview.md)**
-* **[Cloud Foundry组件](./cloud_foundry_concepts/Cloud Foundry Components.md)**
-* **[应用程序如何完成预处理](./cloud_foundry_concepts/How Applications are Staged.md)**
-* **[Cloud Foundry可伸缩性](./cloud_foundry_concepts/Scaling Cloud Foundry.md)**
-* **[组织，空间，角色与权限](./cloud_foundry_concepts/Orgs, Spaces, Roles, and Permissions.md)**
-* **[Cloud Foundry安全](./cloud_foundry_concepts/Cloud Foundry Security.md)**
-* **[堆栈](./cloud_foundry_concepts/Stacks.md)**
-* **[Cloud Foundry名词解释](./cloud_foundry_concepts/Cloud Foundry Glossary.md)**
