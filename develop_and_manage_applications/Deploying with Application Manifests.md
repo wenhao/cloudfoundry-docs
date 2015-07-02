@@ -50,3 +50,15 @@ Using manifest file /path_to_working_directory/some_directory/some_other_directo
 
 命令```cf push```需要应用程序名称，可以在部署清单文件或者命令行里面提供。
 
+如[./Deploying with Application Manifests.md#cf push如何找到部署清单文件]上所述，命令```cf push```只有在文件```manifest.xml```存在于当前工作目录文件夹下才能工作。
+
+如果你不适用部署清单文件，最简单的部署命令如下：
+
+```
+cf push my-app
+```
+
+> 注意：当在命令行提供应用程序的时候，```cf push```会使用此应用程序名称而不是部署清单文件里面的应用程序名称。如果部署清单文件里面配置了多个应用程序，在部署的时候你可以在命令行指定要部署的某个应用程序名称来部署单个应用程序，```cf```命令只会部署你指定的那个应用程序而不会部署其他的。在做测试的时候这些功能很有用。
+
+###cf push如何找到应用程序
+
