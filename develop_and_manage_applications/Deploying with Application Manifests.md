@@ -223,8 +223,40 @@ $ cf push my-app -c "bundle exec rake VERBOSE=true"
 
 ####无主机名(no-hostname)属性
 
+默认情况下，如果你不提供主机名称，应用程序的URL则由```APP-NAME.DOMAIN```组成。如果你想覆盖并使用跟域名映射到应用程序，你可以设置```no-hostname```值为```true```。
+
+```
+---
+  ...
+  no-hostname: true
+```
+
+命令行选项里面使用```--no-hostname```覆盖相应的配置。
+
 
 ####随机路由(random-route)属性
 
+使用```random-raoute```属性创建应用的URL包括应用程序名称和随机的字符。使用这个属性来避免在部署同一个应用程序的时候URL冲突。
+
+命令行选项里面使用```--random-route```覆盖相应的配置。
+
+```
+---
+  ...
+  random-route: true
+```
 
 ####路径(path)属性
+
+使用```path```属性告知Cloud Foundry去哪里找应用程序。如果你的应用程序在你执行```cf push```命令工作目录之下，就不需要此配置。
+
+```
+---
+  ...
+  path: path_to_application_bits
+```
+
+命令行选项里面使用```-p```覆盖相应的配置。
+
+####超时(timeout)属性
+
