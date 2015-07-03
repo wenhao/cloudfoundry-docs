@@ -321,3 +321,24 @@ $ cf push my-app -c "bundle exec rake VERBOSE=true"
 * 当你暂停或者重启应用程序时，所有的环境变量都以存储。
 
 ####服务
+
+应用程序可以绑定服务例如数据库，消息队列和键值存储器。
+
+应用程序部署到程序空间。应用程序部署之后可以绑定任何存在于应用空间的服务。
+
+配置`services`项，包括services头和一个或多个服务名称。
+
+无论谁创建这些服务并选择这些服务实例名字。这些名字传达逻辑信息，例如`backend_queue`，名字就表明它的用途，如`mysql_5.x`也是如此，例子如下：
+
+```
+---
+  ...
+  services:
+   - instance_ABC
+   - instance_XYZ
+```
+
+绑定的服务信息都存储在`VCAP_SERVICES`环境变量里。参见[绑定服务](http://docs.cloudfoundry.org/devguide/services/bind-service.html)。
+
+###使用部署清单部署多个应用程序
+
