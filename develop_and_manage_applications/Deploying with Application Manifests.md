@@ -342,3 +342,69 @@ $ cf push my-app -c "bundle exec rake VERBOSE=true"
 
 ###使用部署清单部署多个应用程序
 
+在执行`cf push`命令时，可以在部署清单文件里面定义多个需要部署的应用程序。在你这样做时，你要留意在部署清单文件中定义的应用程序目录结构和路径。
+
+假设你要部署两个应用程序分别叫`spark`和`flame`，然后你想Cloud Foundry先创建并启动`spark`。你只需要把`spark`定义在前面即可。
+
+在这种情况下，你有两个应用程序需要部署。假设他们分别是`spark.rb`位于spark目录和`flame.rb`位于flame目录。在上级目录，fireplace目录包含spark和flame目录还有`manifest.xml`部署清单文件。为了找到部署清单文件，你希望在frieplace目录运行`cf`命令。
+
+现在如果你改变了目录结构和部署清单文件的路径，默认情况`cf push`不能在当前工作目录下找到你的应用程序。如果确保`cf push`在部署的时候找到你想部署的应用程序路径。
+
+解决方案是在使用`cf push`时为每个应用程序添加路径配置。假设在`fireplace`目录下运行`cf push`。
+
+对于`spark`：
+
+```
+---
+  ...
+  path: ./spark/
+```
+
+对于`flame`：
+
+```
+---
+  ...
+  path: ./flame/
+```
+
+部署 清单文件包括这两个应用程序的配置。
+
+```
+---
+# 此部署清单部署两个应用程序
+# 应用程序分别在flame和spark目录下
+# flame和spark在fireplace目录下
+# cf push应当自fireplace目录下运行
+applications:
+- name: spark
+  memory: 1G
+  instances: 2
+  host: flint-99
+  domain: example.com
+  path: ./spark/
+  services:
+  - mysql-flint-99
+- name: flame
+  memory: 1G
+  instances: 2
+  host: burnin-77
+  domain: example.com
+  path: ./flame/
+  services:
+  - redis-burnin-77
+```
+
+在部署清单文件使用多个应用程序配置时遵守以下规则：
+
+* 应用程序名称具有自描述性。
+* 如果某个程序是另外某个程序的后台服务的时候，也就是说它不需要路由，这时候可以使用`no-route`配置。
+* 应用程序名称不能是`cf push`。
+* 任何命令行选项不能是`cf push`。
+
+这里有两个特殊情况：
+
+* 如果你的部署清单文件名不是`manifest.xml`或者不在当前工作目录下，则使用`-f`命令行选项。
+* 如果你只想部署在部署清单文件中的定义的某一个应用程序，只需要在执行部署命令时提供应用程序名称即可`cf push my-app`。
+
+###避免重复
