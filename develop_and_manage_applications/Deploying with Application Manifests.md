@@ -315,3 +315,9 @@ $ cf push my-app -c "bundle exec rake VERBOSE=true"
 * 设置某个变量：```cf set-env my-variable_name my-variable_value```
 * 重置某个变量：`cf unset-env my-variable_name my-variable_value`
 
+在部署清单文件里定义的环境变量在以下情况起作用：
+
+* 当你第一次部署应用程序时，Cloud Foundry会读取部署清单文件里面的环境变量，然后添加这些环境变量到要部署应用的容器。
+* 当你暂停或者重启应用程序时，所有的环境变量都以存储。
+
+####服务
