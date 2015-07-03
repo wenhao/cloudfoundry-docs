@@ -271,3 +271,47 @@ $ cf push my-app -c "bundle exec rake VERBOSE=true"
 如果你的应用程序在设置的超时时间之内没能启动，Cloud Foundry则为不在尝试启动此应用程序。在部署大型应用时，你可以延长超时的时间。
 
 命令行选项里面使用```-t```覆盖相应的配置。
+
+####无路由(no-route)属性
+
+默认情况下，```cf push```会为每个应用程序分配路由。某些应用程序只需要在后台处理一些数据，并不需要分配路由。
+
+如果你不想给应用程序分配路由，你可以设置```no-route```属性为```true```。
+
+```
+---
+  ...
+  no-route: true
+```
+
+命令行选项里面使用```--no-route```覆盖相应的配置。
+
+如果你发现某个应用程序具有本不应该有的路由：
+
+1. 使用```cf unmap-route```命令删除分配的路由。
+2. 设置部署清单文件属性```no-route: true```或者指定命令行选项```--no-route```，然后重新部署应用。
+
+更多信息，参见[使用部署清单部署多个应用程序](./Deploying with Application Manifests.md/#使用部署清单部署多个应用程序)
+
+####环境变量
+
+配置```env```项，包括env头和一个或多个环境变量键值对。
+
+例如：
+
+```
+---
+  ...
+  env:
+    RAILS_ENV: production
+    RACK_ENV: production
+```
+
+命令```cf push```部署应用程序到服务器容器里。这些变量是属于容器的环境变量。
+
+当应用程序运行时，Cloud Foundry允许你改变这些环境变量。
+
+* 查看所有的变量：```cf env my-app```
+* 设置某个变量：```cf set-env my-variable_name my-variable_value```
+* 重置某个变量：`cf unset-env my-variable_name my-variable_value`
+
