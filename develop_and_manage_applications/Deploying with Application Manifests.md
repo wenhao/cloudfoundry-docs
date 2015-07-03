@@ -408,3 +408,34 @@ applications:
 * 如果你只想部署在部署清单文件中的定义的某一个应用程序，只需要在执行部署命令时提供应用程序名称即可`cf push my-app`。
 
 ###避免重复
+
+在部署清单文件里面多个应用程序可以共享所有通用的服务配置，你可以看到某些内容是重复的。然而部署清单文件任然可以使用，重复可能会导致排版错误的增加，进而导致应用程序部署失败。
+
+解决此问题办法是把所有重复并只需要出现一次的内部移出来并放在`applications`的上面。被提出来的内容可以提所有应用程序使用。注意在应用程序里面定义的所有一样的配置会覆盖掉上面的配置。
+
+这样的话部署清单文件就变得更加的短小易读和更容易维护。
+
+注意下面的部署清单文件有多少内容可以提出来。
+
+```
+---
+  ...
+# all applications use these settings and services
+domain: example.com
+memory: 1G
+instances: 1
+services:
+- clockwork-mysql
+applications:
+- name: springtock
+  host: tock09876
+  path: ./spring-music/build/libs/spring-music.war
+- name: springtick
+  host: tick09875
+  path: ./spring-music/build/libs/spring-music.war
+```
+
+在下面的章节我们会继续讨论如果在部署清单文件里面共享配置。
+
+###继承部署清单文件
+
