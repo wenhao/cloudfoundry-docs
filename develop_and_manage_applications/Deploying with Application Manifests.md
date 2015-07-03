@@ -445,4 +445,60 @@ applications:
 
 在下列情况下，这种方式非常有用：
 
-* 
+* 某个应用程序有多种不同的部署模式，比如调试，本地或者公共的。每一种部署模式都可以定义在子部署清单文件，它也从父部署清单文件里继承了所有公共的配置。
+* 某个应用程序在父部署清单文件里面设置了基本配置。用户可以通过创建子部署清单文件的方式添加新的属性或者覆盖父部署清单文件里已有的配置。
+
+多个部署清单文件之间继承的好处类似于通过使用单个部署清单文件减少重复内容。使用继承，我们也可以把重复的内容放在父部署清单文件里面。
+
+每一个子部署清单文件必须包含一个`inherit`关键字指明父部署清单文件。在子部署清单文件开头三个中划线之后加上`inherit`关键字。例如，某个子部署清单文件的父部署清单文件叫做`base-manifest.yml`文件头如下：
+
+```
+---
+  ...
+  inherit: base-manifest.yml
+```
+
+你不需要在父部署清单文件添加其他东西。
+
+如下简单的例子，父部署清单文件为每个应用程序定义了最小的可用资源，而在产品环境的子部署清单文件里面则增加了。
+
+**simple-base-manifest.yml**
+
+```
+---
+path: .
+domain: example.com
+memory: 256M
+instances: 1
+services:
+- singular-backend
+
+# app-specific configuration
+applications:
+ - name: springtock
+   host: 765shower
+   path: ./april/build/libs/april-weather.war
+ - name: wintertick
+   host: 321flurry
+   path: ./december/target/december-weather.war
+```
+
+**simple-prod-manifest.yml**
+
+```
+---
+inherit: simple-base-manifest.yml
+applications:
+ - name:springstorm
+   memory: 512M
+   instances: 1
+   host: 765deluge
+   path: ./april/build/libs/april-weather.war
+ - name: winterblast
+   memory: 1G
+   instances: 2
+   host: 321blizzard
+   path: ./december/target/december-weather.war
+```
+
+注意：继承会增加部署清单文件创建和维护的复杂度。添加适当的注释可以在使用子部署清单文件继承或者覆盖父部署清单文件的配置的时候可以避免一些复杂度。
