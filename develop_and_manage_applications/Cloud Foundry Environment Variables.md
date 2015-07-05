@@ -135,7 +135,6 @@ VCAP_APP_HOST=0.0.0.0
 例如：
 
 ```
-
 VCAP_APPLICATION={"instance_id":"451f045fd16427bb99c895a2649b7b2a",
 "instance_index":0,"host":"0.0.0.0","port":61857,"started_at":"2013-08-12
 00:05:29 +0000","started_at_timestamp":1376265929,"start":"2013-08-12 00:05:29
@@ -145,3 +144,11 @@ VCAP_APPLICATION={"instance_id":"451f045fd16427bb99c895a2649b7b2a",
 63c1c-40b9-434e-a797-db240b587d32","name":"styx-james","uris":["styx-james.a1-ap
 p.cf-app.com"],"users":null}
 ```
+
+####弃用的端口变量(VCAP_APP_PORT)
+
+已弃用，使用上面的[端口](./Cloud Foundry Environment Variables.md/#端口(PORT))环境变量。
+
+####服务(VCAP_SERVICES)
+
+
