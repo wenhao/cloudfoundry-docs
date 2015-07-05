@@ -75,3 +75,73 @@ MEMORY_LIMIT=512m
 
 ####端口号(PORT)
 
+此端口是用于DEA和应用程序通信。在应用程序预处理时，DEA会创建此端口。应用程序实例也是用此端口号。
+
+```
+PORT=61857
+```
+
+####当前工作目录(PWD)
+
+显示当前工作目录，它是buildpack和应用程序运行的目录。
+
+```
+PWD=/home/vcap
+```
+
+####临时目录(TMPDIR)
+
+临时目录和预处理文件存储的目录。
+
+```
+TMPDIR=/home/vcap/tem
+```
+
+####用户(USER)
+
+DEA运行的用户。
+
+```
+USER=vcap
+```
+
+####DEA的IP地址(VCAP_APP_HOST)
+
+DEA的IP地址。
+
+```
+VCAP_APP_HOST=0.0.0.0
+```
+
+####应用程序信息(VCAP_APPLICATION)
+
+此变量包含部署了得应用程序所有信息。返回JSON格式的数据。下表展示所有的属性。
+
+属性 | 描述
+---------- | ----------
+`application_users, users`|
+`instance_id` | 应用程序唯一标示符
+`instance_index` | 程序实例的索引值。你可以使用[CF_INSTANCE_INDEX]()查看此值。
+`application_version, version` | 部署应用程序版本的唯一标示符，每次应用程序部署，此值都会更新。
+`application_name, name` | 部署后应用程序的名称。
+`application_urls` | 应用程序的URL。
+`started_at, start` | 应用程序最近启动的时间。
+`started_at_timestamp` | 应用程序最近启动的时间戳。
+`host` | 应用程序实例的IP地址。
+`port` | 应用程序实例的端口地址。你可以通过[端口](./Cloud Foundry Environment Variables.md/#端口(PORT))环境变量获取。
+`limits` | 应用程序实例内存、磁盘和文件数量的限制。在应用程序部署时，会使用在命令行选项或者部署清单文件定义的内存和磁盘大小限制。文件数量是由管理员定义。
+`state_timestamp` | 应用程序获取某个状态的时间戳。
+
+例如：
+
+```
+
+VCAP_APPLICATION={"instance_id":"451f045fd16427bb99c895a2649b7b2a",
+"instance_index":0,"host":"0.0.0.0","port":61857,"started_at":"2013-08-12
+00:05:29 +0000","started_at_timestamp":1376265929,"start":"2013-08-12 00:05:29
++0000","state_timestamp":1376265929,"limits":{"mem":512,"disk":1024,"fds":16384}
+,"application_version":"c1063c1c-40b9-434e-a797-db240b587d32","application_name"
+:"styx-james","application_uris":["styx-james.a1-app.cf-app.com"],"version":"c10
+63c1c-40b9-434e-a797-db240b587d32","name":"styx-james","uris":["styx-james.a1-ap
+p.cf-app.com"],"users":null}
+```
