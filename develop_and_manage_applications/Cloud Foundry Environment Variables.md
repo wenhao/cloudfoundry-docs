@@ -151,4 +151,180 @@ p.cf-app.com"],"users":null}
 
 ####服务(VCAP_SERVICES)
 
+绑定服务实例到应用程序之后，应用程序重启时，Cloud Foundry会把服务连接信息写入`VCAP_SERVICES`环境变量里面。
 
+返回的JSON文档里面包括绑定到每个应用程序的一个或者多个服务信息。服务对象的子对象是绑定到应用程序的服务实例。下表详细描述了绑定服务的所有属性。
+
+```
+VCAP_SERVICES=
+{
+  "elephantsql-n/a": [
+    {
+      "name": "elephantsql-c6c60",
+      "label": "elephantsql-n/a",
+      "tags": [
+        "postgres",
+        "postgresql",
+        "relational"
+      ],
+      "plan": "turtle",
+      "credentials": {
+        "uri": "postgres://seilbmbd:PHxTPJSbkcDakfK4cYwXHiIX9Q8p5Bxn@babar.elephantsql.com:5432/seilbmbd"
+      }
+    }
+  ],
+  "sendgrid-n/a": [
+    {
+      "name": "mysendgrid",
+      "label": "sendgrid-n/a",
+      "tags": [
+        "smtp"
+      ],
+      "plan": "free",
+      "credentials": {
+        "hostname": "smtp.sendgrid.net",
+        "username": "QvsXMbJ3rK",
+        "password": "HCHMOYluTv"
+      }
+    }
+  ]
+}
+```
+
+
+```
+
+VCAP_SERVICES=
+{
+  "elephantsql": [
+    {
+      "name": "elephantsql-c6c60",
+      "label": "elephantsql",
+      "tags": [
+        "postgres",
+        "postgresql",
+        "relational"
+      ],
+      "plan": "turtle",
+      "credentials": {
+        "uri": "postgres://seilbmbd:PHxTPJSbkcDakfK4cYwXHiIX9Q8p5Bxn@babar.elephantsql.com:5432/seilbmbd"
+      }
+    }
+  ],
+  "sendgrid": [
+    {
+      "name": "mysendgrid",
+      "label": "sendgrid",
+      "tags": [
+        "smtp"
+      ],
+      "plan": "free",
+      "credentials": {
+        "hostname": "smtp.sendgrid.net",
+        "username": "QvsXMbJ3rK",
+        "password": "HCHMOYluTv"
+      }
+    }
+  ]
+}
+```
+
+```
+$ cf revg
+  Retrieving the contents of the running environment variable group as sampledeveloper@pivotal.io...
+  OK
+  Variable Name   Assigned Value
+  HTTP Proxy      87.226.68.130
+
+
+$ cf sevg
+  Retrieving the contents of the staging environment variable group as sampledeveloper@pivotal.io...
+  OK
+  Variable Name   Assigned Value
+  HTTP Proxy      27.145.145.105
+  EXAMPLE-GROUP   2001
+
+
+
+$ cf apps
+  Getting apps in org SAMPLE-ORG-NAME / space dev as sampledeveloper@pivotal.io...
+  OK
+
+
+
+name                                               requested state   instances   memory   disk   urls
+  APP-NAME                                         started           1/1         256M     1G     APP-NAME.cf-app.com, test-foo.com
+
+
+
+$ cf env APP-NAME
+  Getting env variables for app APP-NAME in org SAMPLE-ORG-NAME / space dev as sampledeveloper@pivotal.io...
+  OK
+
+
+
+System-Provided:
+
+
+
+{
+   "VCAP_APPLICATION": {
+    "application_name": "APP-NAME",
+    "application_uris": [
+     "APP-NAME.sample-app.com",
+     "test-foo.com"
+    ],
+    "application_version": "7d0d64be-7f6f-406a-9d21-504643147d63",
+    "limits": {
+     "disk": 1024,
+     "fds": 16384,
+     "mem": 256
+    },
+    "name": "APP-NAME",
+    "space_id": "37189599-2407-9946-865e-8ebd0e2df89a",
+    "space_name": "dev",
+    "uris": [
+     "APP-NAME.sample-app.com",
+     "test-foo.com"
+    ],
+    "users": null,
+    "version": "7d0d64be-7f6f-406a-9d21-504643147d63"
+   }
+  }
+
+
+
+Running Environment Variable Groups:
+  HTTP Proxy: 87.226.68.130
+
+
+
+Staging Environment Variable Groups:
+  EXAMPLE-GROUP: 2001
+  HTTP Proxy: 27.145.145.105
+  
+```
+
+
+```
+$ cf ssevg '{"test":"87.226.68.130","test2":"27.145.145.105"}'
+  Setting the contents of the staging environment variable group as admin...
+  OK
+  $ cf sevg
+  Retrieving the contents of the staging environment variable group as admin...
+  OK
+  Variable Name   Assigned Value
+  test            87.226.68.130
+  test2           27.145.145.105
+
+
+$ cf srevg '{"test3":"2001","test4":"2010"}'
+  Setting the contents of the running environment variable group as admin...
+  OK
+  $ cf revg
+  Retrieving the contents of the running environment variable group as admin...
+  OK
+  Variable Name   Assigned Value
+  test3           2001
+  test4           2010
+```
