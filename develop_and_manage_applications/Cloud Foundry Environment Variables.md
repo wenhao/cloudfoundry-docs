@@ -155,6 +155,22 @@ p.cf-app.com"],"users":null}
 
 返回的JSON文档里面包括绑定到每个应用程序的一个或者多个服务信息。服务对象的子对象是绑定到应用程序的服务实例。下表详细描述了绑定服务的所有属性。
 
+The key for each service in the JSON document is the same as the value of the “label” attribute.
+
+在JSON文档里面描述的每一个服务的键和“label”属性的值是一样的。
+
+属性 | 描述
+-----|----
+`name`|用户创建实例服务的名字。
+`label`|**v1 broker API** 服务名称和服务版本号(如果没有版本号属性，字符串“n/a”就会被用到)，使用中划线链接，例如：“cleardb-n/a”。**v2 broker API** 服务名称。
+`tags`|服务可以由一组字符串来鉴别。
+`plain`|服务创建之后选择的计划。
+`credentials`|以JSON对象的形式包含了一系列访问服务实例使用到的一些认证信息。
+
+查看Cloud Foundry中VCAP_SERVICES变量所有的值，参见[查看环境变量](./Cloud Foundry Environment Variables.md/#查看环境变量)。
+
+下列例子展示了在[Pivotal服务]()商店绑定了多个服务之后，以[版本v1格式]()显示VCAP_SERVICES变量的值。
+
 ```
 VCAP_SERVICES=
 {
@@ -191,6 +207,7 @@ VCAP_SERVICES=
 }
 ```
 
+以[版本v2格式](http://docs.cloudfoundry.org/services/api.html)展示同一个服务如下：
 
 ```
 
@@ -228,6 +245,77 @@ VCAP_SERVICES=
   ]
 }
 ```
+####应用程序实例变量
+
+每一个应用程序的实例都可以访问诸多以`CF_INSTANCE`开头的变量。这些变量提供某个应用程序实例的一些基本信息，包含DEA的IP等地址。
+
+#####`CF_INSTANCE_ADDR`
+
+`CF_INSTANCE_IP`和`CF_INSTANCE_PORT`格式如下：
+
+```
+particular-DEA-IP:particular-app-instance-port
+```
+
+```
+CF_INSTANCE_ADDR=1.2.3.4:5678
+```
+
+#####`CF_INSTANCE_INDEX`
+
+应用程序的索引值。
+
+```
+CF_INSTANCE_INDEX=0
+```
+
+#####`CF_INSTANCE_IP`
+
+运行应用程序实例容器DEA的外部访问地址。
+
+```
+CF_INSTANCE_IP=1.2.3.4
+```
+
+#####`CF_INSTANCE_PORT`
+
+应用程序实例的端口号。
+
+```
+CF_INSTANCE_PORT=5678
+```
+
+#####`CF_INSTANCE_PORTS`
+
+分配给应用程序实例的外和内部端口号。
+
+```
+CF_INSTANCE_PORTS=[{external:5678,internal:5678}]
+```
+
+####环境变量组
+
+环境变量组是系统级变量，管理人员可以用它分别定义应用程序运行或预处理时需要使用的不同环境变量。
+
+一个环境变量组有单个键值对组成，会在应用程序运行或者预处理时加入到程序的容器里。这些值包含如HTTP代理等信息。环境变量组的值是大小写敏感的。
+
+当我们创建环境变量组时，需要考虑以下几点：
+
+* 只有Cloud Foundry管理员可以设置环境变量组的值。
+* 所有验证通过的用户都可以访问应用程序的所有环境变量。
+* 所有环境变量更改都会在管理员重启或者重新预处理应用程序之后起效。
+* 任何用户自定义的环境变量会优先于环境变量组。
+
+下表列出了一些环境变量组。
+
+命令行|描述
+-----|-----
+`running-environment-variable-group`, `revg`|查询运行时环境变量组的内容。
+`staging-environment-variable-group`, `sevg`|查询预处理时环境变量组的内容。
+`set-staging-environment-variable-group`, `ssevg`|以JSON格式传参数创建预处理环境变量组。
+`set-running-environment-variable-group`, `srevg`|以JSON格式传参数创建运行时环境变量组。
+
+下面的例子解释如何获取环境变量：
 
 ```
 $ cf revg
@@ -305,6 +393,7 @@ Staging Environment Variable Groups:
   
 ```
 
+下面的例子解释如何设置环境变量：
 
 ```
 $ cf ssevg '{"test":"87.226.68.130","test2":"27.145.145.105"}'
