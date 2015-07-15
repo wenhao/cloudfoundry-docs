@@ -7,7 +7,10 @@
 
 ###Cloud Foundry是什么？
 
+Cloud Foundry是一个开源的平台即服务，提供不同的云服务，开发框架及应用程序服务。Cloud Foundry让应用程序构建、测试、部署和扩容更加快捷和容易。它是一个[开源项目](https://github.com/cloudfoundry)，同时可以支持私有和共有云。
 
-
+Cloud Foundry提供一个更为开放的平台及服务平台。大多数PaaS平台会限制开发框架、应用程序服务和部署的云服务。Cloud Foundry开放及可扩展的特性不会把开发人员限定在某个单一框架、应用服务及云服务之中。
 
 ###谁需要Cloud Foundry？
+
+Cloud Foundry对于任何开发人员想减少成本或者降低配置基础设施的复杂度是非常理想的。Cloud Foundry允许开发人员部署和扩容应用程序而不会只限定于某个云服务。开发人员可以通过已有的工具并且无需修改任何代码就可以部署他们的应用程序到Cloud Founddry上。
