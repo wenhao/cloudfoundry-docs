@@ -6,7 +6,7 @@
 
 * **[Cloud Foundry概述](./cloud_foundry_concepts/Cloud Foundry Overview.md)**
 * **[Cloud Foundry组件](./cloud_foundry_concepts/Cloud Foundry Components.md)**
-* **[如何打包应用程序](./cloud_foundry_concepts/How Applications are Staged.md)**
+* **[Cloud Foundry应用程序打包流程](./cloud_foundry_concepts/How Applications are Staged.md)**
 * **[Cloud Foundry可伸缩性](./cloud_foundry_concepts/Scaling Cloud Foundry.md)**
 * **[组织，空间，角色与权限](./cloud_foundry_concepts/Orgs, Spaces, Roles, and Permissions.md)**
 * **[Cloud Foundry安全](./cloud_foundry_concepts/Cloud Foundry Security.md)**
