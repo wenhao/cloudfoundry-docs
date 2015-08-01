@@ -18,20 +18,18 @@
 
 ####空间
 
-Ensure that you allocate and maintain enough of the following:
+保证你分配并维护足够的以下资源：
 
-Free space on DEAs so that apps expected to deploy can successfully be staged and run.
-Disk space and memory in your deployment such that if your max_in_flight number of DEAs is down, all instances of apps can be placed on the remaining DEAs.
-Free space to handle one AZ going down if deploying in multiple AZs.
+* 空闲空间保证程序能够在DEAs上成功的打包部署并运行。
+* 如果DEAs的最大并行安装作业数失败了，适当的部署磁盘空间和内存能够保证程序的所有实例能够在剩下的DEAs执行。
+* 空闲空间来处理如果部署在多个可用空间里某个空间停机了。
 
-####Resource pools
+####资源池
 
-Configure your resource pools according to the requirements of your deployment.
+根据你部署的需求来配置你的资源池。
 
 ###Scaling Platform Capacity
 You can scale platform capacity vertically by adding memory and disk, or horizontally by adding more VMs running instances of Cloud Foundry components.
-
-
 
 ####Trade-offs and Benefits
 The nature of a particular application should determine whether you scale vertically or horizontally.
