@@ -14,16 +14,16 @@
 
 ####组件
 
-Scale your components as described in the Scaling Platform Availability section below. Components should be distributed across two or more availability zones (AZs).
+扩展你的组件如在提高平台可用性章节提高的那样。组件应该被分配到至少两个以上的区域(AZs)。
 
-
-####Space
+####空间
 
 Ensure that you allocate and maintain enough of the following:
 
 Free space on DEAs so that apps expected to deploy can successfully be staged and run.
 Disk space and memory in your deployment such that if your max_in_flight number of DEAs is down, all instances of apps can be placed on the remaining DEAs.
 Free space to handle one AZ going down if deploying in multiple AZs.
+
 ####Resource pools
 
 Configure your resource pools according to the requirements of your deployment.
