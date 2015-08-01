@@ -1,4 +1,4 @@
-##零停机部署与Cloud Foundry可伸缩性
+##零停机部署与扩展
 
 为了提高Cloud Foundry平台的容量及可用性，并且尽可能的减少停机的可能性，你可以使用以下策略来部署你的应用程序。
 
@@ -26,26 +26,31 @@
 
 ####资源池
 
-根据你部署的需求来配置你的资源池。
+根据你部署的需求来配置你的[资源池](http://www.google.com/url?q=http%3A%2F%2Fdocs.cloudfoundry.org%2Fbosh%2Fdeployment-basics.html%23resource-pools&sa=D&sntz=1&usg=AFQjCNEyabXy-ymhPvBarCYQP8ZfIeL7pA)。
 
-###Scaling Platform Capacity
-You can scale platform capacity vertically by adding memory and disk, or horizontally by adding more VMs running instances of Cloud Foundry components.
+###扩展平台容量
 
-####Trade-offs and Benefits
-The nature of a particular application should determine whether you scale vertically or horizontally.
+你可以通过增加内存和磁盘大小来纵向扩展平台容量，或者你可以增加运行Cloud Foundry组件的虚拟机数量来横向扩展。
+
+![扩展平台容量](../images/scale_cf.png)
+
+####权衡与优点
+
+根据具体应用程序的本质来决定使用纵向还是横向扩展。
 
 ####DEAs:
 
-The optimal sizing and CPU/memory balance depends on the performance characteristics of the apps that will run on the DEA.
+最理想的大小和CPU/内存权衡取决于运行在DEA上应用程序的性能特性能。
 
-The more DEAs are horizontally scaled, the higher the number of NATS messages the DEAs generate. There are no known limits to the number of DEA nodes in a platform.
-The denser the DEAs (the more vertically scaled they are), the larger the NATS message volume per DEA, as each message includes details of each app instance running on the DEA.
-Larger DEAs also make for larger points of failure: the system takes longer to rebalance 100 app instances than to rebalance 20 app instances.
-####Router:
+* The more DEAs are horizontally scaled, the higher the number of NATS messages the DEAs generate. There are no known limits to the number of DEA nodes in a platform.
+* The denser the DEAs (the more vertically scaled they are), the larger the NATS message volume per DEA, as each message includes details of each app instance running on the DEA.
+* Larger DEAs also make for larger points of failure: the system takes longer to rebalance 100 app instances than to rebalance 20 app instances.
+
+####路由:
 
 Scale the router with the number of incoming requests. In general, this load is much less than the load on DEA nodes.
 
-####Health Manager:
+####健康管理:
 
 The Health Manager works as a failover set, meaning that only one Health Manager is active at a time. For this reason, you only need to scale the Health Manager to deal with instance failures, not increased deployment size.
 
