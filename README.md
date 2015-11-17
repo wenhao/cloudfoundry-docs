@@ -1,5 +1,5 @@
 # cloudfoundry-docs
-Cloud Foundry最新中文文档
+Cloud Foundry最新中文文档(持续更新)
 
 ##此文档帮助你理解如何部署并管理Cloud Foundry
 
