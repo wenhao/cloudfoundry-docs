@@ -24,8 +24,9 @@ To complete this deployment, you need:
 * Ruby 1.9.3 or higher installed on your machine
 * Sufficiently high instance limits on your AWS account. Installing Cloud Foundry using this bootstrap tool configures a production environment with more than 20 component VM instances.
 -->
-* 亚马逊网络服务(AWS)账号和虚拟私有云(VPC)
-* Ruby 1.9.3或以上版本开发环境
+* [亚马逊网络服务(AWS)]账号和虚拟私有云(VPC)
+* 安装[BOSH CLI]或者[bosh-init]
+* [Ruby] 1.9.3或以上版本开发环境
 * 保证你的AWS账户有足够的实例。安装Cloud Foundry并使用引导工具配置一个产品环境需要20多个组件虚拟实例。
 
 <!--
@@ -65,6 +66,10 @@ To complete this deployment, you need:
 * [自定义AWS Cloud Foundry部署清单]
 * [使用BOSH部署Cloud Foundry]： 部署!
 
+[亚马逊网络服务(AWS)]: http://aws.amazon.com/
+[BOSH CLI]: https://bosh.io/docs/bosh-cli.html
+[bosh-init]: https://bosh.io/docs/install-bosh-init.html
+[Ruby]: https://www.ruby-lang.org/en/documentation/installation/
 [使用BOSH AWS引导程序在AWS环境上配置Cloud Foundry]: ./
 [在AWS部署BOSH]: ./
 [自定义AWS Cloud Foundry部署清单]: ./
