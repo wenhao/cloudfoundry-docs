@@ -45,11 +45,16 @@ Select one of the core supported infrastructures below to get started:
   Or, if you just want the `vagrant up` experience, use BOSH-Lite:
 * BOSH-Lite
 -->
-* AWS
-* OpenStack
-* vSphere
-* vCloud Air or vCloud Director
+* [AWS]
+* [OpenStack]
+* [vSphere]
+* [vCloud Air or vCloud Director]
   >Or, if you just want the `vagrant up` experience, use BOSH-Lite:
-* BOSH-Lite
+* [BOSH-Lite]
 
 [BOSH]: https://bosh.io/
+[AWS]: ./Preparing-to-Deploy-on-Amazon-Web-Services.md
+[OpenStack]: ./Preparing-to-Deploy-on-OpenStack.md
+[vSphere]: ./Preparing-to-Deploy-on-vSphere.md
+[vCloud Air or vCloud Director]: ./Preparing-to-Deploy-on-vCloud-Air-or-vCloud-Director.md
+[BOSH-Lite]: ./Preparing-to-Deploy-on-BOSH-Lite.md
