@@ -6,7 +6,7 @@
 <!--
 Cloud Foundry is designed to be configured, deployed, managed, scaled, and upgraded on any cloud IaaS provider. Cloud Foundry achieves this by leveraging [BOSH], an open source tool for release engineering, deployment, lifecycle management, and distributed systems monitoring.
 -->
-Cloud Foundry被设计成能够在任何IaaS(基础设施及服务)提供商上配置、部署、管理、扩展和升级。Cloud Foundry借助[BOSH]，一个开源的支持版本工程、部署、生命周期和分布式系统监控的工具来完成上述功能。
+Cloud Foundry被设计成能够在任何IaaS(基础设施及服务)上配置、部署、管理、扩展和升级。Cloud Foundry基于[BOSH]，一个开源的支持版本工程、部署、生命周期和分布式系统监控的工具来完成上述功能。
 
 <!--
 At a high level, the steps are the same regardless of IaaS:
