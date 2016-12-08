@@ -52,7 +52,7 @@ cf命令行工具使用指南
 
 <!-- 部署Cloud Foundry -->
 [Overview of Deploying Cloud Foundry]: ./deploy-cloud-foundry/Overview-of-Deploying-Cloud-Foundry.md
-[Preparing to Deploy on Amazon Web Services]: ./deploy-cloud-foundry/Preparing-to-Deploy-on-Amazon-Web-Services.md
+[Preparing to Deploy on Amazon Web Services]: ./deploy-cloud-foundry/Preparing-to-Deploy-on-Amazon-Web-Services/Preparing-to-Deploy-on-Amazon-Web-Services.md
 [Preparing to Deploy on OpenStack]: ./deploy-cloud-foundry/Preparing-to-Deploy-on-OpenStack.md
 [Preparing to Deploy on vSphere]: ./deploy-cloud-foundry/Preparing-to-Deploy-on-vSphere.md
 [Preparing to Deploy on vCloud Air or vCloud Director]: ./deploy-cloud-foundry/Preparing-to-Deploy-on-vCloud-Air-or-vCloud-Director.md

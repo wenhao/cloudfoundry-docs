@@ -64,7 +64,7 @@ To complete this deployment, you need:
 * [Deploying Cloud Foundry using BOSH]: Deploy!
 -->
 * [自定义AWS Cloud Foundry部署清单]
-* [使用BOSH部署Cloud Foundry]： 部署!
+* [使用BOSH部署Cloud Foundry]：部署!
 
 [亚马逊网络服务(AWS)]: http://aws.amazon.com/
 [BOSH CLI]: https://bosh.io/docs/bosh-cli.html
@@ -72,7 +72,7 @@ To complete this deployment, you need:
 [Ruby]: https://www.ruby-lang.org/en/documentation/installation/
 [本地开发环境]: ./Preparing-to-Deploy-on-BOSH-Lite.md
 [AWS微型基础设施]: https://github.com/cloudfoundry/cf-release/tree/master/example_manifests
-[使用BOSH AWS引导程序在AWS环境上配置Cloud Foundry]: ./
-[在AWS部署BOSH]: ./
-[自定义AWS Cloud Foundry部署清单]: ./
-[使用BOSH部署Cloud Foundry]: ./
+[使用BOSH AWS引导程序在AWS环境上配置Cloud Foundry]: ./Bootstrapping-an-AWS-Environment-for-Cloud-Foundry.md
+[在AWS部署BOSH]: ./Deploying-BOSH-on-AWS.md
+[自定义AWS Cloud Foundry部署清单]: ./Customizing-the-Cloud-Foundry-Deployment-Manifest-for-AWS.md
+[使用BOSH部署Cloud Foundry]: ../Deploying-Cloud-Foundry.md
