@@ -32,7 +32,7 @@ To complete this deployment, you need:
 <!--
 >**Note**: You can deploy Cloud Foundry in smaller topologies, including a local development environment on Vagrant or a minimal AWS configuration.
 -->
->**注意**: 你可以在较小的拓扑环境中部署Cloud Foundry，可以是安装Vagrant的本地开发环境或者是AWS微型基础设施。
+>**注意**: 你可以在较小的拓扑环境中部署Cloud Foundry，可以是安装Vagrant的[本地开发环境]或者是[AWS微型基础设施]。
 
 <!--
 ###Step 1: Environment Setup
@@ -70,6 +70,8 @@ To complete this deployment, you need:
 [BOSH CLI]: https://bosh.io/docs/bosh-cli.html
 [bosh-init]: https://bosh.io/docs/install-bosh-init.html
 [Ruby]: https://www.ruby-lang.org/en/documentation/installation/
+[本地开发环境]: ./Preparing-to-Deploy-on-BOSH-Lite.md
+[AWS微型基础设施]: https://github.com/cloudfoundry/cf-release/tree/master/example_manifests
 [使用BOSH AWS引导程序在AWS环境上配置Cloud Foundry]: ./
 [在AWS部署BOSH]: ./
 [自定义AWS Cloud Foundry部署清单]: ./
