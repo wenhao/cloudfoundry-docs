@@ -21,7 +21,7 @@ Cloud platforms let anyone deploy network apps or services and make them availab
 <!--
 Not all cloud platforms are created equal. Some have limited language and framework support, lack key app services, or restrict deployment to a single cloud. Cloud Foundry (CF) has become the industry standard. It is an [open source] platform that you can deploy to run your apps on your own computing infrastructure, or deploy on an IaaS like AWS, vSphere, or OpenStack. You can also use a PaaS deployed by a commercial [CF cloud provider]. A broad [community] contributes to and supports Cloud Foundry. The platform’s openness and extensibility prevent its users from being locked into a single framework, set of app services, or cloud.
 -->
-云平台功能各异。某些只支持部分语言和框架，缺少主要的服务，或者只能部署到某个云服务。Cloud Foundry(CF)已成为行业标准。它是一个完全[开源]的平台，你可以使用你自己的计算基础设施部署你的应用，或者使用IaaS服务例如AWS、vSphere或者OpenStack。你也可以使用现成的PaaS商业版的[CF云提供商]。
+云平台功能各异。某些只支持部分语言和框架，缺少主要的服务，或者只能部署到某个云服务。Cloud Foundry(CF)已成为行业标准。它是一个完全[开源]的平台，你可以使用你自己的计算基础设施部署你的应用，或者使用IaaS服务例如AWS、vSphere或者OpenStack。你也可以使用现成的PaaS商业版的[CF云提供商]。庞大的[社区]持续的贡献与支持Cloud Foundry。平台的公开性以及扩展性有效的防止了用户被限制在某个框架、某些应用服务或者云服务。
 
 <!--
 Cloud Foundry is ideal for anyone interested in removing the cost and complexity of configuring infrastructure for their apps. Developers can deploy their apps to Cloud Foundry using their existing tools and with zero modification to their code.
@@ -36,27 +36,37 @@ Cloud Foundry是任何人想减少配置他们应用程序基础设施成本和�
 <!--
 To flexibly serve and scale apps online, Cloud Foundry has subsystems that perform specialized functions. Here’s how some of these main subsystems work.
 -->
-
+为了灵活的服务和扩容先上的应用程序，Cloud Foundry有许多子系统用来完成特定的功能。以下介绍了几个主要的子系统的工作原理。
 
 <!--
 ####How the Cloud Balances Its Load
 -->
+####Cloud Balances均衡负载
 
 <!--
 Clouds balance their processing loads over multiple machines, optimizing for efficiency and resilience against point failure. A Cloud Foundry installation accomplishes this at three levels:
+-->
+云平台在多台机器之间实现均衡负载，规避了单点故障并提高了效率和可靠性。安装Cloud Foundry完成了以下三个层面：
 
+<!--
 1. [BOSH] creates and deploys virtual machines (VMs) on top of a physical computing infrastructure, and deploys and runs Cloud Foundry on top of this cloud. To configure the deployment, BOSH follows a manifest document.
 2. The CF [Cloud Controller] runs the apps and other processes on the cloud’s VMs, balancing demand and managing app lifecycles.
 3. The [router] routes incoming traffic from the world to the VMs that are running the apps that the traffic demands, usually working with a customer-provided load balancer.
 -->
+1. [BOSH]在物理计算基础设施上创建和部署虚拟机(VMs)，并在此之上部署和运行Cloud Foundry。为了配置部署，BOSH遵循既定的清单文档。
+2. CF[控制器]在云虚拟机上运行和处理应用程序，按需负载以及管理应用程序生命周期。
+3. [路由]路由外部传入流量到内部虚拟机，虚拟机按流量需求运行应用程序，通常
+与客户提供的均衡服务器协同运行。
 
 <!--
 ####How Apps Run Anywhere
 -->
+####程序如何能够到处运行
 
 <!--
 Cloud Foundry designates two types of VMs: the component VMs that constitute the platform’s infrastructure, and the host VMs that host apps for the outside world. Within CF, the Diego system distributes the hosted app load over all of the host VMs, and keeps it running and balanced through demand surges, outages, or other changes. Diego accomplishes this through an auction algorithm.
 -->
+Cloud Foundry制定了两种类型的虚拟机: 平台基础设施提供的组件式虚拟机，还有外部提供用于托管应用程序的托管虚拟机。CF内部，迭戈系统在托管虚拟机上按需分发托管程序，保持持续运行并在需求激增、运行中断或其他变动时进行平衡。迭戈通过一个竞争算法完成这项工作。
 
 <!--
 To meet demand, multiple host VMs run duplicate instances of the same app. This means that apps must be portable. Cloud Foundry distributes app source code to VMs with everything the VMs need to compile and run the apps locally. This includes the OS [stack] that the app runs on, and a [buildpack] containing all languages, libraries, and services that the app uses. Before sending an app to a VM, the Cloud Controller [stages] it for delivery by combining stack, buildpack, and source code into a droplet that the VM can unpack, compile, and run. For simple, standalone apps with no dynamic pointers, the droplet can contain a pre-compiled executable instead of source code, language, and libraries.
@@ -104,10 +114,10 @@ Typical apps depend on free or metered [services] such as databases or third-par
 
 [开源]: https://github.com/cloudfoundry
 [CF云提供商]: https://www.cloudfoundry.org/learn/certified-providers/
-[community]: https://www.cloudfoundry.org/community/
+[社区]: https://www.cloudfoundry.org/community/
 [BOSH]: http://bosh.io/
-[Cloud Controller]: http://docs.cloudfoundry.org/concepts/architecture/cloud-controller.html
-[router]: http://docs.cloudfoundry.org/concepts/architecture/router.html
+[控制器]: http://docs.cloudfoundry.org/concepts/architecture/cloud-controller.html
+[路由]: http://docs.cloudfoundry.org/concepts/architecture/router.html
 [stack]: http://docs.cloudfoundry.org/devguide/deploy-apps/stacks.html
 [buildpack]: http://docs.cloudfoundry.org/buildpacks/
 [stages]: http://docs.cloudfoundry.org/concepts/how-applications-are-staged.html
