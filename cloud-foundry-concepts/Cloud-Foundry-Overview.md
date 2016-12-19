@@ -81,27 +81,32 @@ To meet demand, multiple host VMs run duplicate instances of the same app. This 
 <!--
 To organize user access to the cloud and to control resource use, a cloud operator defines [Orgs and Spaces] within an installation and assigns Roles such as admin, developer, or auditor to each user. The [User Authentication and Authorization] (UAA) server supports access control as an [OAuth2] service, and can store user information internally or connect to external user stores through LDAP or SAML.
 -->
-
+为了管理用户访问云和控制使用资源，云操作员在安装时会定义[组织和空间]并给用户分配角色例如管理员、开发者或者审核员。[用户认证和授权](UAA)服务支持访问控制作为一个[OAuth2]服务，可以在其内部存储用户信息或者通过外部LDAP、SAML存储。
 
 <!--
 ####Where CF Stores Resources
 -->
+####CF在哪存储资源
 
 <!--
 Cloud Foundry uses the git system on [GitHub] to version-control source code, buildpacks, documentation, and other resources. Developers on the platform also use GitHub for their own apps, custom configurations, and other resources. To store large binary files, such as droplets, CF maintains an internal or external blobstore. To store and share temporary information, such as internal component states, CF uses MySQL, [Consul], and [etcd].
 -->
+Cloud Foundry使用[GitHub]的git系统版本控制源代码、buildpacks、文档和其他资源。平台上的开发人员同样使用GitHub管理他们的应用程序、自定义配置和其他资源。对于大型二进制文件存储，例如droplets，CF维护了一个内部或者外部的blobstore。存储和共享临时信息，例如内部组件状态，CF使用MySQL、[Consul]和[etcd]。
 
 <!--
 ####How CF Components Communicate
 -->
+####CF组件如何通信
 
 <!--
 Cloud Foundry components communicate with each other by posting messages internally using http and https protocols, and by sending [NATS] messages to each other directly.
 -->
+Cloud Foundry组件之间内部通信使用http或者https协议，通过发送[NATS]信息直接通信。
 
 <!--
 ####How to Monitor and Analyze a CF Deployment
 -->
+####CF如何监控与分析部署
 
 <!--
 As the cloud operates, the Cloud Controller VM, router VM, and all VMs running apps continuously generate logs and metrics. The Loggregator system aggregates this information in a structured, usable form, the Firehose. You can use all of the output of the Firehose, or direct the output to specific uses, such as monitoring system internals or analyzing user behavior, by applying nozzles.
@@ -124,8 +129,8 @@ Typical apps depend on free or metered [services] such as databases or third-par
 [操作系统栈]: http://docs.cloudfoundry.org/devguide/deploy-apps/stacks.html
 [buildpack]: http://docs.cloudfoundry.org/buildpacks/
 [暂存]: http://docs.cloudfoundry.org/concepts/how-applications-are-staged.html
-[Orgs and Spaces]: http://docs.cloudfoundry.org/concepts/roles.html
-[User Authentication and Authorization]: http://docs.cloudfoundry.org/concepts/architecture/uaa.html
+[组织和空间]: http://docs.cloudfoundry.org/concepts/roles.html
+[用户认证和授权]: http://docs.cloudfoundry.org/concepts/architecture/uaa.html
 [OAuth2]: http://oauth.io/
 [GitHub]: http://github.org/
 [Consul]: https://github.com/hashicorp/consul
