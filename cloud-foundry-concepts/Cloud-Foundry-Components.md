@@ -37,7 +37,7 @@ The router routes incoming traffic to the appropriate component, either a Cloud 
 <!--
 The router periodically queries the Diego Bulletin Board System (BBS) to determine which cells and containers each application currently runs on. Using this information, the router recomputes new routing tables based on the IP addresses of each cell virtual machine (VM) and the host-side port numbers for the cell’s containers.
 -->
-路由定期的查询Diego电子布告栏系统来决策哪个单元或者容器的应用程序
+路由定期的查询Diego电子布告栏系统来决策哪个单元或者容器的应用程序在运行。通过这些信息，路由根据每个单元虚拟机的IP地址和容器的宿主端端口号重新计算路由表。
 
 <!--
 ###Authentication
@@ -47,11 +47,137 @@ The router periodically queries the Diego Bulletin Board System (BBS) to determi
 <!--
 ####OAuth2 Server (UAA) and Login Server
 -->
+####OAuth2服务器(UUA)和登录服务器
 
 <!--
 The OAuth2 server (the UAA) and Login Server work together to provide identity management.
 -->
-OAuth2([UAA])和登陆服务器共同管理认证服务。
+OAuth2服务器([UAA])和登陆服务器共同管理认证服务。
+
+<!--
+###App Lifecycle
+-->
+
+<!--
+####Cloud Controller and Diego Brain
+-->
+
+<!--
+The [Cloud Controller] (CC) directs the deployment of applications. To push an app to Cloud Foundry, you target the Cloud Controller. The Cloud Controller then directs the Diego Brain through the [CC-Bridge] to coordinate individual [Diego cells] to stage and run applications.
+
+In [pre-Diego architecture], the Cloud Controller’s Droplet Execution Agent (DEA) performed these app lifecycle tasks.
+
+The Cloud Controller also maintain records of [orgs, spaces, user roles, services], and more.
+-->
+
+<!--
+####nsync, BBS, and Cell Reps
+-->
+
+<!--
+To keep applications available, cloud deployments must constantly monitor their states and reconcile them with their expected states, starting and stopping processes as required. In pre-Diego architecture, the [Health Manager (HM9000)] performed this function. The nsync, BBS, and Cell Reps use a more distributed approach.
+-->
+
+![app-monitor-sync-diego](../images/cloud-foundry-concepts/app-monitor-sync-diego.png)
+
+<!--
+The nsync, BBS, and Cell Rep components work together along a chain to keep apps running. At one end is the user. At the other end are the instances of applications running on widely-distributed VMs, which may crash or become unavailable.
+-->
+
+<!--
+Here is how the components work together:
+
+* **nsync** receives a message from the Cloud Controller when the user scales an app. It writes the number of instances into a `DesiredLRP` structure in the Diego BBS database.
+* **BBS** uses its convergence process to monitor the `DesiredLRP` and `ActualLRP` values. It launches or kills application instances as appropriate to ensure the `ActualLRP` count matches the `DesiredLRP` count.
+* **Cell** Rep monitors the containers and provides the `ActualLRP` value.
+-->
+
+<!--
+###App Storage and Execution
+-->
+
+<!--
+####Blobstore
+-->
+
+<!--
+The blobstore is a repository for large binary files, which Github cannot easily manage because Github is designed for code. Blobstore binaries include:
+-->
+
+<!--
+* Application code packages
+* Buildpacks
+* Droplets
+-->
+
+<!--
+You can configure the blobstore as either an internal server or an external S3 or S3-compatible endpoint.
+-->
+
+<!--
+####Diego Cell
+-->
+
+<!--
+Each application VM has a Diego Cell that executes application start and stop actions locally, manages the VM’s containers, and reports app status and other data to the BBS and [Loggregator].
+-->
+
+<!--
+In pre-Diego CF architecture, the [DEA node] performed the task of managing the applications and containers on a VM.
+-->
+
+<!--
+###Services
+-->
+
+<!--
+####Service Brokers
+-->
+
+<!--
+Applications typically depend on [services] such as databases or third-party SaaS providers. When a developer provisions and binds a service to an application, the service broker for that service is responsible for providing the service instance.
+-->
+
+<!--
+###Messaging
+-->
+
+<!--
+####Consul and BBS
+-->
+
+<!--
+Cloud Foundry component VMs communicate with each other internally through HTTP and HTTPS protocols, sharing temporary messages and data stored in two locations:
+-->
+
+<!--
+* A [Consul server] stores longer-lived control data, such as component IP addresses and distributed locks that prevent components from duplicating actions.
+* Diego’s [Bulletin Board System] (BBS) stores more frequently updated and disposable data such as cell and application status, unallocated work, and heartbeat messages. The BBS stores data in MySQL, using the [Go MySQL Driver].
+-->
+
+<!--
+The route-emitter component uses the NATS protocol to broadcast the latest routing tables to the routers. In pre-Diego CF architecture, the [NATS Message Bus] carried all internal component communications.
+-->
+
+<!--
+###Metrics and Logging
+-->
+
+<!--
+####Loggregator
+-->
+
+<!--
+The Loggregator (log aggregator) system streams application logs to developers.
+-->
+
+<!--
+####Metrics Collector
+-->
+
+<!--
+The metrics collector gathers metrics and statistics from the components. Operators can use this information to monitor a Cloud Foundry deployment.
+-->
 
 ###Cloud Controller
 
