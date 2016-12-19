@@ -55,7 +55,7 @@ Clouds balance their processing loads over multiple machines, optimizing for eff
 -->
 1. [BOSH]在物理计算基础设施上创建和部署虚拟机(VMs)，并在此之上部署和运行Cloud Foundry。为了配置部署，BOSH遵循既定的清单文档。
 2. CF[控制器]在云虚拟机上运行和处理应用程序，按需负载以及管理应用程序生命周期。
-3. [路由]路由外部传入流量到内部虚拟机，虚拟机按流量需求运行应用程序，通常
+3. [路由]外部传入流量到内部虚拟机，虚拟机按流量需求运行应用程序，通常
 与客户提供的均衡服务器协同运行。
 
 <!--
@@ -111,14 +111,17 @@ Cloud Foundry组件之间内部通信使用http或者https协议，通过发送[
 <!--
 As the cloud operates, the Cloud Controller VM, router VM, and all VMs running apps continuously generate logs and metrics. The Loggregator system aggregates this information in a structured, usable form, the Firehose. You can use all of the output of the Firehose, or direct the output to specific uses, such as monitoring system internals or analyzing user behavior, by applying nozzles.
 -->
+由于云操作，控制器虚拟机、路由虚拟机和所有运行着应用程序的虚拟机持续产生的日志和指标。日志收集器以结构化、格式良好及流式收集日志。你可以使用所有日志流输出，或者导出以备特殊用途，例如通过日志管道监控系统内部运行或者分析用户行为。
 
 <!--
 ####Using Services with CF
 -->
+####使用CF服务
 
 <!--
 Typical apps depend on free or metered [services] such as databases or third-party APIs. To incorporate these into an app, a developer writes a Service Broker, an API that publishes to the Cloud Controller the ability to list service offerings, provision the service, and enable apps to make calls out to it.
 -->
+典型的应用程序依赖一些免费的或者计费的[服务]例如数据库或者第三方APIs。为了把这些服务与应用程序进行整合，开发人员需要写一个服务代理，一个发布到控制器的服务清单、服务创建和应用程序调用的API。
 
 [开源]: https://github.com/cloudfoundry
 [CF云提供商]: https://www.cloudfoundry.org/learn/certified-providers/
@@ -136,4 +139,4 @@ Typical apps depend on free or metered [services] such as databases or third-par
 [Consul]: https://github.com/hashicorp/consul
 [etcd]: https://github.com/coreos/etcd
 [NATS]: http://docs.cloudfoundry.org/concepts/architecture/messaging-nats.html
-[services]: http://docs.cloudfoundry.org/services/overview.html
+[服务]: http://docs.cloudfoundry.org/services/overview.html
