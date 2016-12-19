@@ -1,18 +1,57 @@
+<!--
+##Cloud Foundry Components
+Page last updated: December 9, 2016
+-->
 ##Cloud Foundry组件
 
+最后更新: 2016-12-9
+
+<!--
+Cloud Foundry components include a self-service application execution engine, an automation engine for application deployment and lifecycle management, and a scriptable command line interface (CLI), as well as integration with development tools to ease deployment processes. Cloud Foundry has an open architecture that includes a buildpack mechanism for adding frameworks, an application services interface, and a cloud provider interface.
+-->
 Cloud Foundry组件包括一个自我服务的应用程序运行引擎，一个自动化的应用程序部署引擎和生命周期管服务，还有一个脚本化的命令行接口(CLI)，同时也提供了一些开发工具来简化整个部署过程。Cloud Foundry整个系统拥有一个开发的架构，包括能够自定义添加框架的buildpack机制，开放的应用服务接口及云服务提供商接口。
 
+<!--
+Refer to the descriptions below for more information about Cloud Foundry components. Some descriptions include links to more detailed documentation.
+-->
 更多关于Cloud Foundry组件信息可以查看下图。某些描述信息还链接到更为详细的文档。
 
-![Cloud Foundry架构](../images/cf_architecture_block.png)
+![Cloud Foundry架构](../images/cloud-foundry-concepts/cf_architecture_block.png)
 
+<!--
+###Routing
+-->
 ###路由
 
-[路由](http://docs.cloudfoundry.org/concepts/architecture/router.html)分发请求到下一个适当的组件，通常是Cloud Controller或者是运行在DEA节点上的应用程序。
+<!--
+Router
+-->
+####路由器
 
+<!--
+The router routes incoming traffic to the appropriate component, either a Cloud Controller component or a hosted application running on a Diego Cell.
+-->
+
+[路由]分发请求到特定的组件，要么是控制器，要么是一个托管应用程序的Diego单元。
+
+<!--
+The router periodically queries the Diego Bulletin Board System (BBS) to determine which cells and containers each application currently runs on. Using this information, the router recomputes new routing tables based on the IP addresses of each cell virtual machine (VM) and the host-side port numbers for the cell’s containers.
+-->
+路由定期的查询Diego电子布告栏系统来决策哪个单元或者容器的应用程序
+
+<!--
+###Authentication
+-->
 ###认证
 
-OAuth2([UAA](http://docs.cloudfoundry.org/concepts/architecture/uaa.html))和登陆服务器共同管理认证服务。
+<!--
+####OAuth2 Server (UAA) and Login Server
+-->
+
+<!--
+The OAuth2 server (the UAA) and Login Server work together to provide identity management.
+-->
+OAuth2([UAA])和登陆服务器共同管理认证服务。
 
 ###Cloud Controller
 
@@ -56,3 +95,6 @@ Cloud Foundry使用[NATS](http://docs.cloudfoundry.org/concepts/architecture/mes
 度量收集器会收集各个组件的度量信息。管理员可以通过这些信息来监控Cloud Foundry的实例。
 
 应用程序的日志聚集器会收集并发送应用程序的日志给开发人员。
+
+[路由]: http://docs.cloudfoundry.org/concepts/architecture/router.html
+[UAA]: http://docs.cloudfoundry.org/concepts/architecture/uaa.html

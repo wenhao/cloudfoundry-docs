@@ -66,7 +66,7 @@ Clouds balance their processing loads over multiple machines, optimizing for eff
 <!--
 Cloud Foundry designates two types of VMs: the component VMs that constitute the platform’s infrastructure, and the host VMs that host apps for the outside world. Within CF, the Diego system distributes the hosted app load over all of the host VMs, and keeps it running and balanced through demand surges, outages, or other changes. Diego accomplishes this through an auction algorithm.
 -->
-Cloud Foundry制定了两种类型的虚拟机: 平台基础设施提供的组件式虚拟机，还有外部提供用于托管应用程序的托管虚拟机。CF内部，迭戈系统在托管虚拟机上按需分发托管程序，保持持续运行并在需求激增、运行中断或其他变动时进行平衡。迭戈通过一个竞争算法完成这项工作。
+Cloud Foundry制定了两种类型的虚拟机: 平台基础设施提供的组件式虚拟机，还有外部提供用于托管应用程序的托管虚拟机。CF内部，Diego系统在托管虚拟机上按需分发托管程序，保持持续运行并在需求激增、运行中断或其他变动时进行平衡。Diego通过一个竞争算法完成这项工作。
 
 <!--
 To meet demand, multiple host VMs run duplicate instances of the same app. This means that apps must be portable. Cloud Foundry distributes app source code to VMs with everything the VMs need to compile and run the apps locally. This includes the OS [stack] that the app runs on, and a [buildpack] containing all languages, libraries, and services that the app uses. Before sending an app to a VM, the Cloud Controller [stages] it for delivery by combining stack, buildpack, and source code into a droplet that the VM can unpack, compile, and run. For simple, standalone apps with no dynamic pointers, the droplet can contain a pre-compiled executable instead of source code, language, and libraries.
