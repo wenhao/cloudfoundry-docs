@@ -3,32 +3,40 @@ Cloud Foundry Overview
 Page last updated: December 7, 2016
 -->
 ##Cloud Foundry概述
+
 最后更新: 2016-12-7
 
 <!--
-The Industry-Standard Cloud Platform
+###The Industry-Standard Cloud Platform
 -->
+###行业标准云平台
 
 <!--
 Cloud platforms let anyone deploy network apps or services and make them available to the world in a few minutes. When an app becomes popular, the cloud easily scales it to handle more traffic, replacing with a few keystrokes the build-out and migration efforts that once took months. Cloud platforms represent the next step in the evolution of IT, enabling you to focus exclusively on your applications and data without worrying about underlying infrastructure.
 -->
+云平台能够让任何人在几分钟之内就可以部署网络应用程序或者服务。当某个应用变得热门时，云平台能够轻松的扩容来应对更多的流量，以前需要数月才能完成的构建和迁移现在只需要简单的敲几下键盘就完成了。云平台代表了下一代IT革命，让你专门关注你的应用程序和数据而不用担心底层基础设施。
+
 ![power-of-platform](../images/cloud-foundry-concepts/power-of-platform.png)
 
 <!--
 Not all cloud platforms are created equal. Some have limited language and framework support, lack key app services, or restrict deployment to a single cloud. Cloud Foundry (CF) has become the industry standard. It is an [open source] platform that you can deploy to run your apps on your own computing infrastructure, or deploy on an IaaS like AWS, vSphere, or OpenStack. You can also use a PaaS deployed by a commercial [CF cloud provider]. A broad [community] contributes to and supports Cloud Foundry. The platform’s openness and extensibility prevent its users from being locked into a single framework, set of app services, or cloud.
 -->
+云平台功能各异。某些只支持部分语言和框架，缺少主要的服务，或者只能部署到某个云服务。Cloud Foundry(CF)已成为行业标准。它是一个完全[开源]的平台，你可以使用你自己的计算基础设施部署你的应用，或者使用IaaS服务例如AWS、vSphere或者OpenStack。你也可以使用现成的PaaS商业版的[CF云提供商]。
 
 <!--
 Cloud Foundry is ideal for anyone interested in removing the cost and complexity of configuring infrastructure for their apps. Developers can deploy their apps to Cloud Foundry using their existing tools and with zero modification to their code.
 -->
+Cloud Foundry是任何人想减少配置他们应用程序基础设施成本和复杂度较理想的工具。开发人员甚至可以使用他们已有的工具并且不用修改任何代码的情况下在Cloud Foundry部署他们的应用程序。
 
 <!--
 ###How Cloud Foundry Works
 -->
+###Cloud Foundry如何工作
 
 <!--
 To flexibly serve and scale apps online, Cloud Foundry has subsystems that perform specialized functions. Here’s how some of these main subsystems work.
 -->
+
 
 <!--
 ####How the Cloud Balances Its Load
@@ -94,23 +102,8 @@ As the cloud operates, the Cloud Controller VM, router VM, and all VMs running a
 Typical apps depend on free or metered [services] such as databases or third-party APIs. To incorporate these into an app, a developer writes a Service Broker, an API that publishes to the Cloud Controller the ability to list service offerings, provision the service, and enable apps to make calls out to it.
 -->
 
-###开源PaaS是什么？
-每一代计算机都会衍生出一种新的应用程序平台。在云计算领域，应用程序平台将被作为一种服务提供，通常被描述为平台即服务(PaaS)。PaaS使应用程序部署、运行和扩容更加容易。
-
-不是所有的PaaS平台都一样，有些仅支持某些特定的语言或者框架，不能提供云应用程序所需要的主要应用服务，或者只能部署到某个云服务上。通过使用开源的PaaS平台，你可以选择适合你的云部署方案，开发的框架以及应用程序运行所需要的应用服务。此外，作为一个开源项目，背后有一个大型的社区在不断的改进并支持Cloud Foundry。
-
-###Cloud Foundry是什么？
-
-Cloud Foundry是一个开源的平台即服务，提供不同的云服务，开发框架及应用程序服务。Cloud Foundry让应用程序构建、测试、部署和扩容更加快捷和容易。它是一个[开源项目](https://github.com/cloudfoundry)，同时可以支持私有和共有云。
-
-Cloud Foundry提供一个更为开放的平台及服务平台。大多数PaaS平台会限制开发框架、应用程序服务和部署的云服务。Cloud Foundry开放及可扩展的特性不会把开发人员限定在某个单一框架、应用服务及云服务之中。
-
-###谁需要Cloud Foundry？
-
-Cloud Foundry对于任何试图减少成本或者降低配置基础设施复杂度的开发人员是非常理想的。Cloud Foundry允许开发人员部署和扩容应用程序而不会只限定于某个云服务。开发人员可以通过已有的工具并且无需修改任何代码就可以轻松的部署他们的应用程序到Cloud Founddry上。
-
 [开源]: https://github.com/cloudfoundry
-[CF cloud provider]: https://www.cloudfoundry.org/learn/certified-providers/
+[CF云提供商]: https://www.cloudfoundry.org/learn/certified-providers/
 [community]: https://www.cloudfoundry.org/community/
 [BOSH]: http://bosh.io/
 [Cloud Controller]: http://docs.cloudfoundry.org/concepts/architecture/cloud-controller.html
