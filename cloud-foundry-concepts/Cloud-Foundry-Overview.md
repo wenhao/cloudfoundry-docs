@@ -71,14 +71,17 @@ Cloud Foundry制定了两种类型的虚拟机: 平台基础设施提供的组�
 <!--
 To meet demand, multiple host VMs run duplicate instances of the same app. This means that apps must be portable. Cloud Foundry distributes app source code to VMs with everything the VMs need to compile and run the apps locally. This includes the OS [stack] that the app runs on, and a [buildpack] containing all languages, libraries, and services that the app uses. Before sending an app to a VM, the Cloud Controller [stages] it for delivery by combining stack, buildpack, and source code into a droplet that the VM can unpack, compile, and run. For simple, standalone apps with no dynamic pointers, the droplet can contain a pre-compiled executable instead of source code, language, and libraries.
 -->
+为了满足需求，多个托管虚拟机都运行着应用程序的重复实例。这就意味着这些应用程序必须是可移植的。Cloud Foundry将应用程序的源代码及所需依赖分发到制定虚拟机并在本地编译和运行应用程序。这个过程包括运行应用程序的[操作系统栈]，包含所有应用程序所需的语言、类库和服务的[buildpack]。在分发应用程序到虚拟机之前，Cloud控制器会先[暂存]它并和合并栈、buildpack还有源代码打包进droplet, 虚拟机可以将其解压、编译并运行。对于一个独立且没有动态指针的简单程序来说，droplet可以包含一个预编译可执行的程序而非源代码、语言和类库。
 
 <!--
-How CF Organizes Users and Workspaces
+####How CF Organizes Users and Workspaces
 -->
+####CF如何管理用户与工作区
 
 <!--
 To organize user access to the cloud and to control resource use, a cloud operator defines [Orgs and Spaces] within an installation and assigns Roles such as admin, developer, or auditor to each user. The [User Authentication and Authorization] (UAA) server supports access control as an [OAuth2] service, and can store user information internally or connect to external user stores through LDAP or SAML.
 -->
+
 
 <!--
 ####Where CF Stores Resources
@@ -118,9 +121,9 @@ Typical apps depend on free or metered [services] such as databases or third-par
 [BOSH]: http://bosh.io/
 [控制器]: http://docs.cloudfoundry.org/concepts/architecture/cloud-controller.html
 [路由]: http://docs.cloudfoundry.org/concepts/architecture/router.html
-[stack]: http://docs.cloudfoundry.org/devguide/deploy-apps/stacks.html
+[操作系统栈]: http://docs.cloudfoundry.org/devguide/deploy-apps/stacks.html
 [buildpack]: http://docs.cloudfoundry.org/buildpacks/
-[stages]: http://docs.cloudfoundry.org/concepts/how-applications-are-staged.html
+[暂存]: http://docs.cloudfoundry.org/concepts/how-applications-are-staged.html
 [Orgs and Spaces]: http://docs.cloudfoundry.org/concepts/roles.html
 [User Authentication and Authorization]: http://docs.cloudfoundry.org/concepts/architecture/uaa.html
 [OAuth2]: http://oauth.io/
