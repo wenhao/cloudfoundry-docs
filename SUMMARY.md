@@ -2,10 +2,10 @@
 
 ### 基本概念
 
-* Cloud Foundry概念
-  * [Cloud Foundry概述]
-  * [Cloud Foundry组件]
-  * [Diego架构]
+####Cloud Foundry概念
+* [Cloud Foundry概述]
+* [Cloud Foundry组件]
+* [Diego架构]
 
 ### 管理员手册
 
