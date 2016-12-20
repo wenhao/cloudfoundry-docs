@@ -92,7 +92,7 @@ To keep applications available, cloud deployments must constantly monitor their 
 <!--
 The nsync, BBS, and Cell Rep components work together along a chain to keep apps running. At one end is the user. At the other end are the instances of applications running on widely-distributed VMs, which may crash or become unavailable.
 -->
-nsync, BBS, and Cell Rep组件之间相互协作构成一条工作链共同维持应用程序运行。
+nsync, BBS, and Cell Rep组件之间相互协作构成一条工作链共同保证应用程序正常运行。一端是用户，另一端则是广阔的运行着的应用程序实例的虚拟机，虚拟机也有可能崩溃或者停止运行。
 
 <!--
 Here is how the components work together:
@@ -101,14 +101,21 @@ Here is how the components work together:
 * **BBS** uses its convergence process to monitor the `DesiredLRP` and `ActualLRP` values. It launches or kills application instances as appropriate to ensure the `ActualLRP` count matches the `DesiredLRP` count.
 * **Cell Rep** monitors the containers and provides the `ActualLRP` value.
 -->
+以下是各组件如何工作的:
+
+* **nsync** 当用户为应用程序扩容时，从控制器接受此动作消息。并把实例的数量以`DesiredLRP`的结构写入到Diego BBS数据库中。
+* **BBS** 使用它的收敛程序比较`DesiredLRP`和`ActualLRP`的值。通过创建或者删除应用程序的实例来确保`ActualLRP`的数值和`DesiredLRP`的数据保持一致。
+* **Cell Rep** 监控容器提供`ActualLRP`值。
 
 <!--
 ###App Storage and Execution
 -->
+###应用程序的存储和执行
 
 <!--
 ####Blobstore
 -->
+####Blobstore
 
 <!--
 The blobstore is a repository for large binary files, which Github cannot easily manage because Github is designed for code. Blobstore binaries include:
