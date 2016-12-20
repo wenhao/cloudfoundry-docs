@@ -3,11 +3,6 @@
   "author": "文浩",
   "description": "Cloud Foundry中文文档，持续更新",
   "language": "zh-hans",
-  "links": {
-      "sidebar": {
-          "我的GitHub": "http://github.com/wenhao"
-      }
-    },
   "plugins": [
       "github",
       "include-codeblock",

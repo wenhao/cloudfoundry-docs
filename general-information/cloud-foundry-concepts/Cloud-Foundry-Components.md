@@ -62,7 +62,7 @@ OAuth2服务器([UAA])和登陆服务器共同管理认证服务。
 <!--
 ####Cloud Controller and Diego Brain
 -->
-####控制器和Diego
+####控制器和Diego脑
 
 <!--
 The [Cloud Controller] (CC) directs the deployment of applications. To push an app to Cloud Foundry, you target the Cloud Controller. The Cloud Controller then directs the Diego Brain through the [CC-Bridge] to coordinate individual [Diego cells] to stage and run applications.
@@ -71,28 +71,35 @@ In [pre-Diego architecture], the Cloud Controller’s Droplet Execution Agent (D
 
 The Cloud Controller also maintain records of [orgs, spaces, user roles, services], and more.
 -->
-[控制器](CC)控制应用程序的部署。为了部署应用程序到Cloud Foundry，你需要使用控制器。控制器指导Diego
+[控制器](CC)控制应用程序的部署。为了部署应用程序到Cloud Foundry，你需要使用控制器。控制器通过[控制器桥]指导Diego脑协调每个[Diego单元]暂存和运行应用程序。
+
+[Diego的前身架构]，控制器微小执行代理(DEA)管理应用程序的这些生命周期。
+
+控制器也负责维护[组织,空间,用户角色],[服务]和其他事务。
 
 <!--
 ####nsync, BBS, and Cell Reps
 -->
+####nsync, BBS, 和Cell Reps
 
 <!--
 To keep applications available, cloud deployments must constantly monitor their states and reconcile them with their expected states, starting and stopping processes as required. In pre-Diego architecture, the [Health Manager (HM9000)] performed this function. The nsync, BBS, and Cell Reps use a more distributed approach.
 -->
+为了保持应用程序持续运行，云部署必须持续不断的监控它们的状态并且使他们与期望的状态一致，按需启动或停止运行。Diego的前身架构中，[Health Manager(HM9000)]执行同样的功能。然而nsync, BBS, and Cell Reps使用分布式的方式。
 
 ![app-monitor-sync-diego](../../images/general-information/cloud-foundry-concepts/app-monitor-sync-diego.png)
 
 <!--
 The nsync, BBS, and Cell Rep components work together along a chain to keep apps running. At one end is the user. At the other end are the instances of applications running on widely-distributed VMs, which may crash or become unavailable.
 -->
+nsync, BBS, and Cell Rep组件之间相互协作构成一条工作链共同维持应用程序运行。
 
 <!--
 Here is how the components work together:
 
 * **nsync** receives a message from the Cloud Controller when the user scales an app. It writes the number of instances into a `DesiredLRP` structure in the Diego BBS database.
 * **BBS** uses its convergence process to monitor the `DesiredLRP` and `ActualLRP` values. It launches or kills application instances as appropriate to ensure the `ActualLRP` count matches the `DesiredLRP` count.
-* **Cell** Rep monitors the containers and provides the `ActualLRP` value.
+* **Cell Rep** monitors the containers and provides the `ActualLRP` value.
 -->
 
 <!--
@@ -228,3 +235,9 @@ Cloud Foundry使用[NATS](http://docs.cloudfoundry.org/concepts/architecture/mes
 [路由]: http://docs.cloudfoundry.org/concepts/architecture/router.html
 [UAA]: http://docs.cloudfoundry.org/concepts/architecture/uaa.html
 [控制器]: http://docs.cloudfoundry.org/concepts/architecture/cloud-controller.html
+[控制器桥]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#bridge-components
+[Diego单元]: http://docs.cloudfoundry.org/concepts/architecture/#diego-cell
+[Diego的前身架构]: http://docs.cloudfoundry.org/concepts/diego/dea-vs-diego.html#design
+[组织、空间、用户角色]: http://docs.cloudfoundry.org/concepts/roles.html
+[服务]: http://docs.cloudfoundry.org/services/overview.html
+[Health Manager(HM9000)]: http://docs.cloudfoundry.org/concepts/diego/dea-vs-diego.html#hm9k
