@@ -16,7 +16,7 @@ Refer to the descriptions below for more information about Cloud Foundry compone
 -->
 更多关于Cloud Foundry组件信息可以查看下图。某些描述信息还链接到更为详细的文档。
 
-![Cloud Foundry架构](../images/cloud-foundry-concepts/cf_architecture_block.png)
+![Cloud Foundry架构](../../images/general-information/cloud-foundry-concepts/cf_architecture_block.png)
 
 <!--
 ###Routing
@@ -81,7 +81,7 @@ The Cloud Controller also maintain records of [orgs, spaces, user roles, service
 To keep applications available, cloud deployments must constantly monitor their states and reconcile them with their expected states, starting and stopping processes as required. In pre-Diego architecture, the [Health Manager (HM9000)] performed this function. The nsync, BBS, and Cell Reps use a more distributed approach.
 -->
 
-![app-monitor-sync-diego](../images/cloud-foundry-concepts/app-monitor-sync-diego.png)
+![app-monitor-sync-diego](../../images/general-information/cloud-foundry-concepts/app-monitor-sync-diego.png)
 
 <!--
 The nsync, BBS, and Cell Rep components work together along a chain to keep apps running. At one end is the user. At the other end are the instances of applications running on widely-distributed VMs, which may crash or become unavailable.

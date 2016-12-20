@@ -1,6 +1,8 @@
 # cloudfoundry-docs
 Cloud Foundry最新中文文档(持续更新)
 
+[GitBook地址]
+
 ##此文档帮助你理解如何部署并管理Cloud Foundry
 
 ###部署Cloud Foundry
@@ -90,3 +92,4 @@ cf命令行工具使用指南
 [使用蓝绿部署策略减少停机时间和风险]: ./develop-and-manage-applications/Using-Blue-Green-Deployment-to-Reduce-Downtime-and-Risk.md
 [Cloud Foundry应用日志]: ./develop-and-manage-applications/Application-Logging-in-Cloud-Foundry.md
 [应用部署和应用健康检查故障排除]: ./develop-and-manage-applications/Troubleshooting-Application-Deployment-and-Health.md)
+[GitBook地址]: https://wenhao.gitbooks.io/cloud-foundry/content/
