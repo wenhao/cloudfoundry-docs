@@ -62,7 +62,7 @@ OAuth2服务器([UAA])和登陆服务器共同管理认证服务。
 <!--
 ####Cloud Controller and Diego Brain
 -->
-####控制器和Diego原理
+####控制器和Diego
 
 <!--
 The [Cloud Controller] (CC) directs the deployment of applications. To push an app to Cloud Foundry, you target the Cloud Controller. The Cloud Controller then directs the Diego Brain through the [CC-Bridge] to coordinate individual [Diego cells] to stage and run applications.
@@ -71,7 +71,7 @@ In [pre-Diego architecture], the Cloud Controller’s Droplet Execution Agent (D
 
 The Cloud Controller also maintain records of [orgs, spaces, user roles, services], and more.
 -->
-[控制器](CC)控制应用程序的部署。为了部署应用程序到Cloud Foundry，你需要使用控制器。控制器
+[控制器](CC)控制应用程序的部署。为了部署应用程序到Cloud Foundry，你需要使用控制器。控制器指导Diego
 
 <!--
 ####nsync, BBS, and Cell Reps

@@ -1,0 +1,29 @@
+{
+  "title": "Cloud Foundry中文文档",
+  "author": "文浩",
+  "description": "Cloud Foundry中文文档，持续更新",
+  "language": "zh-hans",
+  "links": {
+      "sidebar": {
+          "我的GitHub": "http://github.com/wenhao"
+      }
+    },
+  "plugins": [
+      "github",
+      "include-codeblock",
+      "splitter",
+      "ace",
+      "tbfed-pagefooter",
+      "toggle-chapters"
+  ],
+  "pluginsConfig": {
+      "github": {
+          "url": "http://github.com/wenhao"
+      },
+      "tbfed-pagefooter": {
+        "copyright":"Copyright ©2016 Wen Hao",
+        "modify_format": "YYYY-MM-DD HH:mm:ss"
+      }
+  },
+  "gitbook": ">= 3.2.2"
+}

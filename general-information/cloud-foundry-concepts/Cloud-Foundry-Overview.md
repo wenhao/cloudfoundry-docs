@@ -16,7 +16,7 @@ Cloud platforms let anyone deploy network apps or services and make them availab
 -->
 云平台能够让任何人在几分钟之内就可以部署网络应用程序或者服务。当某个应用变得热门时，云平台能够轻松的扩容来应对更多的流量，以前需要数月才能完成的构建和迁移现在只需要简单的敲几下键盘就完成了。云平台代表了下一代IT革命，让你专门关注你的应用程序和数据而不用担心底层基础设施。
 
-![power-of-platform](../images/cloud-foundry-concepts/power-of-platform.png)
+![power-of-platform](../../images/general-information/cloud-foundry-concepts/power-of-platform.png)
 
 <!--
 Not all cloud platforms are created equal. Some have limited language and framework support, lack key app services, or restrict deployment to a single cloud. Cloud Foundry (CF) has become the industry standard. It is an [open source] platform that you can deploy to run your apps on your own computing infrastructure, or deploy on an IaaS like AWS, vSphere, or OpenStack. You can also use a PaaS deployed by a commercial [CF cloud provider]. A broad [community] contributes to and supports Cloud Foundry. The platform’s openness and extensibility prevent its users from being locked into a single framework, set of app services, or cloud.
