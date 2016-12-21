@@ -120,124 +120,104 @@ Here is how the components work together:
 <!--
 The blobstore is a repository for large binary files, which Github cannot easily manage because Github is designed for code. Blobstore binaries include:
 -->
+blobstore是大二进制文件的存储库，Github无法胜任，因为Github是为代码而设计的。Blobstore二进制文件包括：
 
 <!--
 * Application code packages
 * Buildpacks
 * Droplets
 -->
+* 应用程序代码包
+* Buildpacks
+* Droplets
 
 <!--
 You can configure the blobstore as either an internal server or an external S3 or S3-compatible endpoint.
 -->
+您可以将Blobstore配置为内部服务器或外部S3或S3兼容的终端。
 
 <!--
 ####Diego Cell
 -->
+####Diego单元
 
 <!--
 Each application VM has a Diego Cell that executes application start and stop actions locally, manages the VM’s containers, and reports app status and other data to the BBS and [Loggregator].
 -->
+每个应用程序虚拟机都有一个本地执行应用程序启动和停止操作的Diego单元，管理虚拟机的容器，并向BBS和[Loggregator]报告应用程序状态和其他数据。
 
 <!--
 In pre-Diego CF architecture, the [DEA node] performed the task of managing the applications and containers on a VM.
 -->
+在Diego早期架构中，[DEA节点]负责在虚拟机上管理应用程序和容器的任务。
 
 <!--
 ###Services
 -->
+###服务
 
 <!--
 ####Service Brokers
 -->
+####服务代理
 
 <!--
 Applications typically depend on [services] such as databases or third-party SaaS providers. When a developer provisions and binds a service to an application, the service broker for that service is responsible for providing the service instance.
 -->
+应用程序通常依赖某些[服务]，例如数据库或者第三方SaaS提供商。当某个开发人员创建并绑定某个服务到应用程序后，服务代理就会负责创建服务所需要的服务实例。
 
 <!--
 ###Messaging
 -->
+###消息
 
 <!--
 ####Consul and BBS
 -->
+####Consul和BBS
 
 <!--
 Cloud Foundry component VMs communicate with each other internally through HTTP and HTTPS protocols, sharing temporary messages and data stored in two locations:
 -->
+Cloud Foundry组件的虚拟机通过HTTP和HTTPS协议在内部彼此通信，共享临时消息并把数据存储在两个位置:
 
 <!--
 * A [Consul server] stores longer-lived control data, such as component IP addresses and distributed locks that prevent components from duplicating actions.
 * Diego’s [Bulletin Board System] (BBS) stores more frequently updated and disposable data such as cell and application status, unallocated work, and heartbeat messages. The BBS stores data in MySQL, using the [Go MySQL Driver].
 -->
+* [Consul服务器]存储较长生命周期的控制数据，例如组件IP地址和防止组件复制操作的分布式锁。
+* Diego的[公告栏系统(BBS)]存储频繁更新或一次性的数据，例如执行单元和应用程序状态，未分配的工作和心跳测试消息。BBS使用[Go MySQL Driver]在MySQL中存储数据。
 
 <!--
 The route-emitter component uses the NATS protocol to broadcast the latest routing tables to the routers. In pre-Diego CF architecture, the [NATS Message Bus] carried all internal component communications.
 -->
+路由发射器组件使用NATS协议向路由器广播最新的路由表。在Diego前身架构中，[NATS消息总线]负责所有内部组件通信。
 
 <!--
 ###Metrics and Logging
 -->
+###度量与日志
 
 <!--
 ####Loggregator
 -->
+####Loggregator
+
 
 <!--
 The Loggregator (log aggregator) system streams application logs to developers.
 -->
+Loggregator(日志聚合器)系统将应用程序日志流式的传输给开发人员。
 
 <!--
 ####Metrics Collector
 -->
+####度量收集器
 
 <!--
 The metrics collector gathers metrics and statistics from the components. Operators can use this information to monitor a Cloud Foundry deployment.
 -->
-
-###Cloud Controller
-
-[Cloud Controller](http://docs.cloudfoundry.org/concepts/architecture/cloud-controller.html)负责管理应用程序的生命周期。当开发人员部署应用程序到Cloud Foundry后，应用程序就被Cloud Controller接管。Cloud Foundry会存储应用程序字节码文件，为应用程序元数据创建跟踪记录，然后分配DEA节点预处理和运行此应用程序。Cloud Foundry也维护组织、空间、服务、服务实例、用户角色等信息。
-
-###HM9000
-
-HM9000有四个主要的职责：
-
-* 监控并获取应用程序的状态(例如：运行、停止和崩溃等), 版本号和实例数量。HM9000会根据运行在DEA上的应用程序的心跳测试和`droplet.exited`消息状态来更新应用程序的实际状态。
-* 定义应用程序的预期状态，版本号和实例数量。HM9000可以从Cloud Controller数据库里查询应用程序的预期状态。
-* 对比实际状态和预期状态，调整应用实例数量。举例来说，如果某个应用程序只有几个实例的运行状态是所期望的，HM9000就会通知Cloud Controller创建并启动对应数量的实例。
-* 通知Cloud Controller处理任何状态错误的应用程序。
-
-更多关于HM9000架构的详细信息参见[HM9000 readme](https://github.com/cloudfoundry/hm9000)。
-
-###应用执行单元(DEA)
-
-[Droplet 执行代理](http://docs.cloudfoundry.org/concepts/architecture/execution-agent.html)管理应用程序实例，跟踪任何已启动应用实例并广播应用程序各种状态信息。
-
-应用程序实例运行在[Warden](http://docs.cloudfoundry.org/concepts/architecture/warden.html)容器内。集装箱式的架构保证应用程序实例之间相对独立，远离任何共享资源和阻碍其他实例干扰。
-
-###大数据存储
-
-大数据存储包括：
-
-* 应用程序代码
-* Buildpacks
-* Droplets
-
-###服务代理
-
-应用程序通常依赖某些[服务](http://docs.cloudfoundry.org/services/)例如，数据库或者第三方SaaS提供商。当某个开发人员创建并绑定某个服务到应用程序后，服务代理就会负责创建服务所需要的服务实例。
-
-###消息总线
-
-Cloud Foundry使用[NATS](http://docs.cloudfoundry.org/concepts/architecture/messaging-nats.html)，一个轻量级的消息订阅和分发系统，用于组件之间的通信。
-
-###日志与统计
-
-度量收集器会收集各个组件的度量信息。管理员可以通过这些信息来监控Cloud Foundry的实例。
-
-应用程序的日志聚集器会收集并发送应用程序的日志给开发人员。
+度量收集器从组件收集度量和统计信息。操作员可以使用此信息来监控Cloud Foundry的部署。
 
 [路由]: http://docs.cloudfoundry.org/concepts/architecture/router.html
 [UAA]: http://docs.cloudfoundry.org/concepts/architecture/uaa.html
@@ -245,6 +225,12 @@ Cloud Foundry使用[NATS](http://docs.cloudfoundry.org/concepts/architecture/mes
 [控制器桥]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#bridge-components
 [Diego单元]: http://docs.cloudfoundry.org/concepts/architecture/#diego-cell
 [Diego的前身架构]: http://docs.cloudfoundry.org/concepts/diego/dea-vs-diego.html#design
-[组织、空间、用户角色]: http://docs.cloudfoundry.org/concepts/roles.html
+[组织,空间,用户角色]: http://docs.cloudfoundry.org/concepts/roles.html
 [服务]: http://docs.cloudfoundry.org/services/overview.html
 [Health Manager(HM9000)]: http://docs.cloudfoundry.org/concepts/diego/dea-vs-diego.html#hm9k
+[DEA节点]: http://docs.cloudfoundry.org/concepts/architecture/execution-agent.html
+[服务]: http://docs.cloudfoundry.org/services/
+[Consul服务器]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#consul
+[公告栏系统(BBS)]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#bbs
+[Go MySQL Driver]: https://github.com/go-sql-driver/mysql
+[NATS消息总线]: http://docs.cloudfoundry.org/concepts/diego/dea-vs-diego.html#nats

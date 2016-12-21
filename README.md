@@ -1,5 +1,7 @@
 ##[Cloud Foundry最新中文文档(持续更新)]
 
+最后更新: 2016-12-21
+
 <!--
 The industry standard platform for cloud applications. Built for fast-cycle innovation. Designed for the enterprise.
 -->
