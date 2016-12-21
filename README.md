@@ -2,6 +2,8 @@
 
 最后更新: 2016-12-21
 
+**GitBook: https://wenhao.gitbooks.io/cloud-foundry/content/**
+
 <!--
 The industry standard platform for cloud applications. Built for fast-cycle innovation. Designed for the enterprise.
 -->
