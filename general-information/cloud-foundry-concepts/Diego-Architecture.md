@@ -145,7 +145,9 @@ Refer to the [Bulletin Board System repo] on GitHub for more information.
 #####MySQL
 -->
 
+<!--
 * Provides a consistent key-value data store to Diego
+-->
 
 <!--
 ####Access VMs
@@ -281,10 +283,12 @@ The following three platform-specific binaries deploy applications and govern th
 ####Route-Emitter
 -->
 
+<!--
 * Monitors `DesiredLRP` and `ActualLRP` states, emitting route registration and unregistration messages to the Cloud Foundry [router] when it detects changes
 * Periodically emits the entire routing table to the Cloud Foundry router
 
 Refer to the [Route-Emitter repo] on GitHub for more information.
+-->
 
 [Droplet Execution Agents]: http://docs.cloudfoundry.org/concepts/architecture/execution-agent.html
 [Cloud Controller]: http://docs.cloudfoundry.org/concepts/architecture/cloud-controller.html
