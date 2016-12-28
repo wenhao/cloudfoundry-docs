@@ -12,16 +12,24 @@ This topic provides an overview of the structure and components of Diego, the ne
 
 To deploy Diego, see the GitHub Diego-Release.
 -->
+本主题概述了Cloud Foundry的新容器管理系统Diego的结构和组件。
+
+要部署Diego，请参阅GitHub Diego-Release。
 
 <!--
 ###Diego Architecture
 -->
+###Diego架构
 
 <!--
 Cloud Foundry has used two architectures for managing application containers: [Droplet Execution Agents] (DEA) and Diego. With the DEA architecture, the [Cloud Controller] schedules and manages applications on the DEA nodes. In the newer Diego architecture, Diego components replace the DEAs and the [Health Manager (HM9000)], and assume application scheduling and management responsibility from the Cloud Controller.
 
 Refer to the following diagram and descriptions for information about the way Diego handles application requests.
 -->
+
+Cloud Foundry使用两种架构来管理应用程序容器：[Droplet Execution Agents](DEA)和Diego。使用DEA体系结构，[云控制器]在DEA节点上调度和管理应用程序。在较新的Diego结构中，Diego组件替换了DEA和[Health Manager(HM9000)]，并从云控制器承担应用程序调度和管理责任。
+
+有关Diego处理应用程序请求方式的信息，请参阅以下图表和说明。
 
 ![diego-flow](../../images/general-information/cloud-foundry-concepts/diego-flow.png)
 
@@ -36,10 +44,20 @@ View a larger version of this image at the [Diego Design Notes repo].
 6. The [BBS] tracks desired LRPs, running LRP instances, and in-flight Tasks. It also periodically analyzes this information and corrects discrepancies to ensure consistency between `ActualLRP` and `DesiredLRP` counts.
 7. The [Metron Agent], part of the Cell, forwards application logs, errors, and metrics to the Cloud Foundry Loggregator. For more information, see the [Application Logging in Cloud Foundry] topic.
 -->
+在[Diego设计说明]中查看该图片的放大版本。
+
+1. 云控制器转发暂存和运行应用程序到请求到[Cloud Controller]（CC-Bridge）。
+2. CC-Bridge将暂存和运行请求转换为[任务和长时间运行进程]（LRP），然后通过HTTP通过API将它们提交到[公告板系统]（BBS）。
+3. BBS向[Auctioneer]提交任务和LRPs，[Auctioneer]是[Diego Brain]的一部分。
+4. Auctioneer通过[Auction]将这些任务和LRP分发到[Cells]。 Diego Brain使用SSL/TLS协议与Diego Cells通信。
+5. Auctioneer将任务或LRP分配给Cell后，进程[Executor]在单元中创建一个[Garden]容器。任务或LRP在容器中运行。
+6. [BBS]跟踪期望的LRP，运行LRP实例和执行中的任务。它还定期分析此信息并更正差异，以确保`ActualLRP`和`DesiredLRP`计数之间的一致性。
+7. [Metron Agent]是Cell的一部分，将应用程序日志，错误和指标转发到Cloud Foundry Loggregator。有关详细信息，请参阅[Cloud Foundry中的应用程序日志]主题。
 
 <!--
 ###Diego Core Components
 -->
+###Diego核心组件
 
 <!--
 Components in the Diego core run and monitor Tasks and LRPs. The core consists of the following major areas:
@@ -50,47 +68,74 @@ Components in the Diego core run and monitor Tasks and LRPs. The core consists o
 * [Access VMs]
 * [Consul]
 -->
+Diego核心组件运行和监控着任务和LRPs。核心主要包括以下领域：
+
+* [Brain]
+* [Cells]
+* [Database VMs]
+* [Access VMs]
+* [Consul]
 
 <!--
 ####Diego Brain
 -->
+####Diego Brain
 
 <!--
 Diego Brain components distribute Tasks and LRPs to Diego Cells, and correct discrepancies between `ActualLRP` and `DesiredLRP` counts to ensure fault-tolerance and long-term consistency. The Diego Brain consists of the Auctioneer.
 -->
+Diego Brain组件将任务和LRPs分发给Diego Cells，并且纠正`ActualLRP`和`DesiredLRP`之间的差异以确保容错和长久一致性。Diego Brain包括Auctioneer。
 
 <!--
 ####Auctioneer
 -->
+####Auctioneer
 
 <!--
-Uses the [auction package] to run Diego Auctions for Tasks and LRPs
-Communicates with Cell [Reps] over SSL/TLS
-Maintains a lock in the BBS that restricts auctions to one Auctioneer at a time
+* Uses the [auction package] to run Diego Auctions for Tasks and LRPs
+* Communicates with Cell [Reps] over SSL/TLS
+* Maintains a lock in the BBS that restricts auctions to one Auctioneer at a time
+
 Refer to the [Auctioneer repo] on GitHub for more information.
 -->
+* 使用[auction package]运行Diego Auctions的任务和LRPs
+* 通过SSL/TLS与Cell [Reps]通信
+* 在BBS中维护一个锁，限制一次只执行一次Auctioneer
+
+有关详细信息，请参阅GitHub上的[Auctioneer repo]。
 
 <!--
 ####Diego Cell Components
 -->
+####Diego Cell组件
 
 <!--
 Diego Cell components manage and maintain Tasks and LRPs.
 -->
+Diego Cell组件管理和维护任务和LRPs。
 
 <!--
 #####Rep
 -->
+#####Rep
 
 <!--
 * Represents a Cell in Diego Auctions for Tasks and LRPs
 * Mediates all communication between the Cell and the BBS
 * Ensures synchronization between the set of Tasks and LRPs in the BBS with the containers present on the Cell
 * Maintains the presence of the Cell in the BBS
-* Runs Tasks and LRPs by asking the in-process Executor to create a container and RunAction recipes
+* Runs Tasks and LRPs by asking the to create a container and RunAction recipes
 
 Refer to the [Rep repo] on GitHub for more information.
 -->
+
+* 表示任务和LRP的Diego Auctions的Cell
+* Cell和BBS之间的所有通信的中介
+* 确保BBS中的任务和LRPs的集合与Cell上存在的容器之间的同步
+* 维护Cell在BBS中持续运行
+* 通过请求进程内执行器创建容器和RunAction的方式来运行任务和LRPs
+
+有关详细信息，请参阅GitHub上的[Rep repo]。
 
 <!--
 #####Executor
@@ -291,12 +336,12 @@ Refer to the [Route-Emitter repo] on GitHub for more information.
 -->
 
 [Droplet Execution Agents]: http://docs.cloudfoundry.org/concepts/architecture/execution-agent.html
-[Cloud Controller]: http://docs.cloudfoundry.org/concepts/architecture/cloud-controller.html
-[Health Manager (HM9000)]: http://docs.cloudfoundry.org/concepts/diego/dea-vs-diego.html#hm9k
-[Diego Design Notes repo]: http://htmlpreview.github.io/?https://raw.githubusercontent.com/cloudfoundry-incubator/diego-design-notes/master/clickable-diego-overview/clickable-diego-overview.html
-[Cloud Controller Bridge]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#bridge-components
-[Tasks and Long Running Processes]: http://docs.cloudfoundry.org/concepts/diego/diego-auction.html#processes
-[Bulletin Board System]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#bbs
+[云控制器]: http://docs.cloudfoundry.org/concepts/architecture/cloud-controller.html
+[Health Manager(HM9000)]: http://docs.cloudfoundry.org/concepts/diego/dea-vs-diego.html#hm9k
+[Diego设计说明]: http://htmlpreview.github.io/?https://raw.githubusercontent.com/cloudfoundry-incubator/diego-design-notes/master/clickable-diego-overview/clickable-diego-overview.html
+[云控制器桥]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#bridge-components
+[任务和长时间运行进程]: http://docs.cloudfoundry.org/concepts/diego/diego-auction.html#processes
+[公告板系统]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#bbs
 [Auctioneer]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#auctioneer
 [Diego Brain]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#brain-components
 [Cells]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#cell-components
