@@ -44,4 +44,13 @@ Built on hardened production infrastructure for global enterprises, the platform
 -->
 建立在全球企业成熟的基础设施上，该平台确保可扩展的微服务和持续部署，更快的周期时间和更高的可靠性。一切都是完全可扩展的，包括平台本身。
 
+####国内案例:
+
+* 华为[FusionStage]
+* 新浪[SAE]
+* 京东云平台[JAE]
+
 [Cloud Foundry最新中文文档(持续更新)]: https://wenhao.gitbooks.io/cloud-foundry/content/
+[FusionStage]: http://developer.huawei.com/ict/cn/site-paas
+[SAE]: https://sae.sina.com.cn/
+[JAE]: http://jae.jd.com
