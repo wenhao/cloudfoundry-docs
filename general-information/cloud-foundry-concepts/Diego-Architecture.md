@@ -463,7 +463,7 @@ Refer to the [Route-Emitter repo] on GitHub for more information.
 [Loggregator]: https://github.com/cloudfoundry/loggregator
 [Metron库]: https://github.com/cloudfoundry/loggregator/tree/develop/src/metron
 [Diego Core]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#core
-[SSH代理]]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#ssh-proxy
+[SSH代理]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#ssh-proxy
 [CC-Bridge]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#bridge-components
 [路由发射器]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#route-emitter
 [公告板系统资源库]: https://github.com/cloudfoundry-incubator/bbs
