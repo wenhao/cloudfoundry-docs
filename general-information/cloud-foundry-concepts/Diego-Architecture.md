@@ -10,11 +10,11 @@ Page last updated: December 7, 2016
 <!--
 This topic provides an overview of the structure and components of Diego, the new container management system for Cloud Foundry.
 
-To deploy Diego, see the GitHub Diego-Release.
+To deploy Diego, see the GitHub [Diego-Release].
 -->
 本主题概述了Cloud Foundry的新容器管理系统Diego的结构和组件。
 
-要部署Diego，请参阅GitHub Diego-Release。
+要部署Diego，请参阅GitHub [Diego-Release]。
 
 <!--
 ###Diego Architecture
@@ -72,8 +72,8 @@ Diego核心组件运行和监控着任务和LRPs。核心主要包括以下领�
 
 * [Brain]
 * [Cells]
-* [Database VMs]
-* [Access VMs]
+* [数据库虚拟机]
+* [访问虚拟机]
 * [Consul]
 
 <!--
@@ -102,7 +102,7 @@ Refer to the [Auctioneer repo] on GitHub for more information.
 * 通过SSL/TLS与Cell [Reps]通信
 * 在BBS中维护一个锁，限制一次只执行一次Auctioneer
 
-有关详细信息，请参阅GitHub上的[Auctioneer repo]。
+有关详细信息，请参阅GitHub上的[Auctioneer库]。
 
 <!--
 ####Diego Cell Components
@@ -135,7 +135,7 @@ Refer to the [Rep repo] on GitHub for more information.
 * 维护Cell在BBS中持续运行
 * 通过请求进程内执行器创建容器和RunAction的方式来运行任务和LRPs
 
-有关详细信息，请参阅GitHub上的[Rep repo]。
+有关详细信息，请参阅GitHub上的[Rep库]。
 
 <!--
 #####Executor
@@ -153,7 +153,7 @@ Refer to the [Executor repo] on GitHub for more information.
 * 实现[API文档]中详述的通用执行程序操作
 * 将`STDOUT`和`STDERR`流输出到在Cell上运行的Metron Agent
 
-有关详细信息，请参阅GitHub上的[Executor repo]。
+有关详细信息，请参阅GitHub上的[Executor库]。
 
 <!--
 #####Garden
@@ -169,7 +169,7 @@ See the [Garden] topic or the [Garden repository] on GitHub for more information
 * 提供与平台无关的服务器和客户端来管理Garden容器
 * 定义容器实现的[Garden-runC]接口
 
-有关详细信息，请参阅[Garden]主题或GitHub上的[Garden repository]。
+有关详细信息，请参阅[Garden]主题或GitHub上的[Garden库]。
 
 <!--
 #####Metron Agent
@@ -183,12 +183,12 @@ Refer to the [Metron repo] on GitHub for more information.
 -->
 将应用程序日志，错误和应用程序以及Diego指标转发到[Loggregator] Doppler组件
 
-有关详细信息，请参阅GitHub上的[Metron repo]。
+有关详细信息，请参阅GitHub上的[Metron库]。
 
 <!--
 #####Database VMs
 -->
-#####Database虚拟机
+#####数据库虚拟机
 
 <!--
 **Diego Bulletin Board System**
@@ -429,8 +429,9 @@ Refer to the [Route-Emitter repo] on GitHub for more information.
 
 有关详细信息，请参阅GitHub上的[Route-Emitter库]。
 
+[Diego-Release]: https://github.com/cloudfoundry-incubator/diego-release
 [Droplet Execution Agents]: http://docs.cloudfoundry.org/concepts/architecture/execution-agent.html
-[云控制器]: http://docs.cloudfoundry.org/concepts/architecture/cloud-controller.html
+[Cloud Controller]: http://docs.cloudfoundry.org/concepts/architecture/cloud-controller.html
 [Health Manager(HM9000)]: http://docs.cloudfoundry.org/concepts/diego/dea-vs-diego.html#hm9k
 [Diego设计说明]: http://htmlpreview.github.io/?https://raw.githubusercontent.com/cloudfoundry-incubator/diego-design-notes/master/clickable-diego-overview/clickable-diego-overview.html
 [云控制器桥]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#bridge-components
@@ -444,10 +445,10 @@ Refer to the [Route-Emitter repo] on GitHub for more information.
 [Garden]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#garden
 [BBS]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#bbs
 [Metron Agent]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#metron-agent
-[Application Logging in Cloud Foundry]: http://docs.cloudfoundry.org/devguide/deploy-apps/streaming-logs.html
+[Cloud Foundry中的应用程序日志]: http://docs.cloudfoundry.org/devguide/deploy-apps/streaming-logs.html
 [Brain]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#brain-components
 [Cells]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#cell-components
-[Database虚拟机]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#database-vms
+[数据库虚拟机]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#database-vms
 [访问虚拟机]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#access-vms
 [Consul]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#consul
 [auction package]: https://github.com/cloudfoundry-incubator/auction
@@ -462,9 +463,9 @@ Refer to the [Route-Emitter repo] on GitHub for more information.
 [Loggregator]: https://github.com/cloudfoundry/loggregator
 [Metron库]: https://github.com/cloudfoundry/loggregator/tree/develop/src/metron
 [Diego Core]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#core
-[SSH Proxy]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#ssh-proxy
+[SSH代理]]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#ssh-proxy
 [CC-Bridge]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#bridge-components
-[Route Emitter]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#route-emitter
+[路由发射器]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#route-emitter
 [公告板系统资源库]: https://github.com/cloudfoundry-incubator/bbs
 [App Lifecycle二进制文件]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#app-lifecycles
 [文件服务器]: https://github.com/cloudfoundry-incubator/file-server
