@@ -6,6 +6,7 @@
 * [Cloud Foundry概述]
 * [Cloud Foundry组件]
 * [Diego架构]
+* [DEA和Diego Architectures之间的区别]
 
 ### 管理员手册
 
@@ -18,3 +19,4 @@
 [Cloud Foundry概述]: general-information/cloud-foundry-concepts/Cloud-Foundry-Overview.md
 [Cloud Foundry组件]: general-information/cloud-foundry-concepts/Cloud-Foundry-Components.md
 [Diego架构]: general-information/cloud-foundry-concepts/Diego-Architecture.md
+[DEA和Diego架构之间的区别]: general-information/cloud-foundry-concepts/Differences-Between-DEA-and-Diego-Architectures.md
