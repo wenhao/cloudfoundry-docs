@@ -140,37 +140,55 @@ Refer to the [Rep repo] on GitHub for more information.
 <!--
 #####Executor
 -->
+#####Executor
 
 <!--
-Runs as a logical process inside the Rep
-Implements the generic Executor actions detailed in the [API documentation]
-Streams `STDOUT` and `STDERR` to the Metron agent running on the Cell
+* Runs as a logical process inside the Rep
+* Implements the generic Executor actions detailed in the [API documentation]
+* Streams `STDOUT` and `STDERR` to the Metron agent running on the Cell
+
 Refer to the [Executor repo] on GitHub for more information.
 -->
+* 在Rep中作为逻辑进程运行
+* 实现[API文档]中详述的通用执行程序操作
+* 将`STDOUT`和`STDERR`流输出到在Cell上运行的Metron Agent
+
+有关详细信息，请参阅GitHub上的[Executor repo]。
 
 <!--
 #####Garden
 -->
+#####Garden
 
 <!--
-Provides a platform-independent server and clients to manage Garden containers
-Defines the [Garden-runC] interface for container implementation
+* Provides a platform-independent server and clients to manage Garden containers
+* Defines the [Garden-runC] interface for container implementation
+
 See the [Garden] topic or the [Garden repository] on GitHub for more information.
 -->
+* 提供与平台无关的服务器和客户端来管理Garden容器
+* 定义容器实现的[Garden-runC]接口
+
+有关详细信息，请参阅[Garden]主题或GitHub上的[Garden repository]。
 
 <!--
 #####Metron Agent
 -->
+#####Metron Agent
 
 <!--
 Forwards application logs, errors, and application and Diego metrics to the [Loggregator] Doppler component
 
 Refer to the [Metron repo] on GitHub for more information.
 -->
+将应用程序日志，错误和应用程序以及Diego指标转发到[Loggregator] Doppler组件
+
+有关详细信息，请参阅GitHub上的[Metron repo]。
 
 <!--
 #####Database VMs
 -->
+#####Database虚拟机
 
 <!--
 **Diego Bulletin Board System**
@@ -185,42 +203,65 @@ Refer to the [Metron repo] on GitHub for more information.
 
 Refer to the [Bulletin Board System repo] on GitHub for more information.
 -->
+** Diego公告栏系统**
+
+* 维护Diego集群的实时状态，包括所有所需的LRPs，运行LRP实例和正在运行的任务
+* 通过HTTP向[Diego Core]组件和外部客户端（包括[SSH代理]，[CC-Bridge]和[路由发射器]）提供RPC样式的API。
+* 通过将期望的状态（存储在数据库中）与实际状态（来自正在运行的实例）做比较，确保任务和LRPs的一致性和容错性
+* 以下列方式使`DesiredLRP`计数和`ActualLRP`计数保持同步：
+  * 如果`DesiredLRP`计数超过`ActualLRP`计数，从Auctioneer发起请求
+  * 如果`ActualLRP`计数超过`DesiredLRP`计数，发送停止消息到实例中Cell上的Rep
+* 监视可能错过的消息，如有必要，重新发送
+
+有关详细信息，请参阅GitHub上的[公告板系统资源库]。
 
 <!--
 #####MySQL
 -->
+#####MySQL
 
 <!--
 * Provides a consistent key-value data store to Diego
 -->
+* 为Diego提供一致的键值数据存储
 
 <!--
 ####Access VMs
 -->
+####访问虚拟机
 
 <!--
 #####File Server
 -->
+#####文件服务器
 
 <!--
 * This “blobstore” serves static assets that can include general-purpose [App Lifecycle binaries] and application-specific droplets and build artifacts.
 
 Refer to the [File Server repo] on GitHub for more information.
 -->
+* 此“blobstore”提供静态资产，可包括通用的[App Lifecycle二进制文件]和应用程序特定的droplets和构建产出物。
+
+有关详细信息，请参阅GitHub上的[文件服务器]。
 
 <!--
 #####SSH Proxy
 -->
+#####SSH Proxy
 
 <!--
 * Brokers connections between SSH clients and SSH servers running inside instance containers
 
 Refer to Understanding Application SSH, Application SSH Overview, or the Diego SSH Github repo for more information.
 -->
+* 在实例容器中运行的SSH客户端和SSH服务器之间的Brokers连接
+
+有关详细信息，请参阅了[解应用程序SSH]，[应用程序SSH概述]或[Diego SSH Github库]。
 
 <!--
 #####Consul
 -->
+#####Consul
 
 <!--
 * Provides dynamic service registration and load balancing through DNS resolution
@@ -228,28 +269,39 @@ Refer to Understanding Application SSH, Application SSH Overview, or the Diego S
 
 Refer to the Consul repo on GitHub for more information.
 -->
+* 通过DNS解析提供动态服务注册和负载均衡
+* 为维护分布式锁和组件存在提供一致的键值存储
+
+有关详细信息，请参阅GitHub上的[Consul库]。
 
 <!--
 #####Go MySQL Driver
 -->
+#####Go MySQL Driver
 
 <!--
 The Diego BBS stores data in MySQL. Diego uses the Go MySQL Driver to communicate with MySQL.
 
-Refer to the Go MySQL Driver repo on GitHub for more information.
+Refer to the [Go MySQL Driver repo] on GitHub for more information.
 -->
+Diego BBS在MySQL中存储数据。 Diego使用Go MySQL驱动程序与MySQL进行通信。
+
+有关详细信息，请参阅GitHub上的[Go MySQL驱动程序库]。
 
 <!--
 ###Cloud Controller Bridge Components
 -->
+###Cloud Controller桥接组件
 
 <!--
 The Cloud Controller Bridge (CC-Bridge) components translate app-specific requests from the Cloud Controller to the BBS. These components include the following:
 -->
+Cloud Controller桥接（CC-Bridge）组件将应用程序特定的请求从Cloud Controller转换到BBS。这些组件包括：
 
 <!--
 ####Stager
 -->
+####Stager
 
 <!--
 * Translates staging requests from the Cloud Controller into generic Tasks and LRPs
@@ -257,10 +309,15 @@ The Cloud Controller Bridge (CC-Bridge) components translate app-specific reques
 
 Refer to the [Stager repo] on GitHub for more information.
 -->
+* 将来自Cloud Controller的暂存请求转换为通用任务和LRPs
+* 任务完成后，向Cloud Controller发送响应
+
+有关详细信息，请参阅GitHub上的[Stager库]。
 
 <!--
 ####CC-Uploader
 -->
+####CC-Uploader
 
 <!--
 * Mediates uploads from the Executor to the Cloud Controller
@@ -268,10 +325,15 @@ Refer to the [Stager repo] on GitHub for more information.
 
 Refer to the [CC-Uploader repo] on GitHub for more information.
 -->
+* 介入Executor到Cloud Controller之间
+* 将来自Executor的简单HTTP POST请求转换为Cloud Controller的复杂多部分格式上传
+
+有关详细信息，请参阅GitHub上的[CC-Uploader库]。
 
 <!--
 ####Nsync
 -->
+####Nsync
 
 <!--
 * Listens for app requests to update the `DesiredLRPs` count and updates `DesiredLRPs` through the BBS
@@ -279,10 +341,15 @@ Refer to the [CC-Uploader repo] on GitHub for more information.
 
 Refer to the [Nsync repo] on GitHub for more information.
 -->
+* 监听更新`DesiredLRPs`计数的应用程序请求，并通过BBS更新`DesiredLRPs`
+* 定期轮询每个应用程序的Cloud Controller，以确保Diego维护准确的`DesiredLRPs`计数
+
+有关详细信息，请参阅GitHub上的[Nsync库]。
 
 <!--
 ####TPS
 -->
+####TPS
 
 <!--
 * Provides the Cloud Controller with information about currently running LRPs to respond to `cf apps` and `cf app APP_NAME` requests
@@ -290,22 +357,30 @@ Refer to the [Nsync repo] on GitHub for more information.
 
 Refer to the [TPS repo] on GitHub for more information.
 -->
+* 为Cloud Controller提供有关当前运行的LRPs的信息，以响应`cf apps`和`cf app APP_NAME`请求
+* 监视`ActualLRP`活动的崩溃，并向他们报告Cloud Controller
+
+有关详细信息，请参阅GitHub上的[TPS库]。
 
 <!--
 ###Platform-specific Components
 -->
+###平台特定组件
 
 <!--
 ####Garden Backends
 -->
+####Garden后端
 
 <!--
 Garden contains a set of interfaces that each platform-specific backend must implement. See the [Garden] topic or the [Garden repository] on GitHub for more information.
 -->
+Garden包含每个特定于平台的后端必须实现的一组接口。有关详细信息，请参阅[Garden]主题或GitHub上的[Garden库]。
 
 <!--
 ####App Lifecycle Binaries
 -->
+####App生命周期二进制文件
 
 <!--
 The following three platform-specific binaries deploy applications and govern their lifecycle:
@@ -313,20 +388,35 @@ The following three platform-specific binaries deploy applications and govern th
 * The **Builder**, which stages a CF application. The [CC-Bridge] runs the Builder as a Task on every staging request. The Builder performs static analysis on the application code and does any necessary pre-processing before the application is first run.
 * The **Launcher**, which runs a CF application. The CC-Bridge sets the Launcher as the Action on the `DesiredLRP` for the application. The Launcher executes the start command with the correct system context, including working directory and environment variables.
 * The **Healthcheck**, which performs a status check on running CF application from inside the container. The [CC-Bridge] sets the Healthcheck as the Monitor action on the `DesiredLRP` for the application.
+-->
 
+以下三个特定于平台的二进制文件部署应用程序并管理其生命周期：
 
+* **构建器**，其中存储CF应用程序。 [CC-Bridge]在每个临时请求上将构建器作为任务运行。 构建器对应用程序代码执行静态分析，并在首次运行应用程序之前进行任何必要的预处理。
+* **Launcher**，它运行一个CF应用程序。 CC-Bridge将Launcher设置为应用程序的`DesiredLRP`上的Action。 Launcher使用正确的系统上下文执行启动命令，包括工作目录和环境变量。
+* **Healthcheck**，它从容器内部执行CF应用程序的状态检查。 [CC-Bridge]将Healthcheck设置为应用程序的`DesiredLRP`上的Monitor操作。
+
+<!--
 **Current Implementations**
 
 * [Buildpack App Lifecycle] implements the Cloud Foundry buildpack-based deployment strategy.
 * [Docker App Lifecycle] implements a Docker deployment strategy.
+-->
+
+**当前实现**
+
+* [Buildpack应用程序生命周期]实现了Cloud Foundry基于buildpack的部署策略。
+* [Docker应用程序生命周期]实现了Docker部署策略。
 
 <!--
 ###Other Components
 -->
+###其他组件
 
 <!--
 ####Route-Emitter
 -->
+####Route-Emitter
 
 <!--
 * Monitors `DesiredLRP` and `ActualLRP` states, emitting route registration and unregistration messages to the Cloud Foundry [router] when it detects changes
@@ -334,6 +424,10 @@ The following three platform-specific binaries deploy applications and govern th
 
 Refer to the [Route-Emitter repo] on GitHub for more information.
 -->
+* 监视器`DesiredLRP`和`ActualLRP`状态，当它检测到更改时向Cloud Foundry[路由]发送路由注册和注销消息
+* 定期将整个路由表发送到Cloud Foundry路由器
+
+有关详细信息，请参阅GitHub上的[Route-Emitter库]。
 
 [Droplet Execution Agents]: http://docs.cloudfoundry.org/concepts/architecture/execution-agent.html
 [云控制器]: http://docs.cloudfoundry.org/concepts/architecture/cloud-controller.html
@@ -353,40 +447,40 @@ Refer to the [Route-Emitter repo] on GitHub for more information.
 [Application Logging in Cloud Foundry]: http://docs.cloudfoundry.org/devguide/deploy-apps/streaming-logs.html
 [Brain]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#brain-components
 [Cells]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#cell-components
-[Database VMs]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#database-vms
-[Access VMs]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#access-vms
+[Database虚拟机]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#database-vms
+[访问虚拟机]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#access-vms
 [Consul]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#consul
 [auction package]: https://github.com/cloudfoundry-incubator/auction
 [Reps]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#rep
-[Auctioneer repo]: https://github.com/cloudfoundry-incubator/auctioneer
-[Rep repo]: https://github.com/cloudfoundry-incubator/rep
-[API documentation]: https://github.com/cloudfoundry-incubator/receptor/blob/master/doc/actions.md
-[Executor repo]: https://github.com/cloudfoundry-incubator/executor
+[Auctioneer库]: https://github.com/cloudfoundry-incubator/auctioneer
+[Rep库]: https://github.com/cloudfoundry-incubator/rep
+[API文档]: https://github.com/cloudfoundry-incubator/receptor/blob/master/doc/actions.md
+[Executor库]: https://github.com/cloudfoundry-incubator/executor
 [Garden-runC]: https://github.com/cloudfoundry/garden-runc-release
 [Garden]: http://docs.cloudfoundry.org/concepts/architecture/garden.html
-[Garden repository]: https://github.com/cloudfoundry-incubator/garden
+[Garden库]: https://github.com/cloudfoundry-incubator/garden
 [Loggregator]: https://github.com/cloudfoundry/loggregator
-[Metron repo]: https://github.com/cloudfoundry/loggregator/tree/develop/src/metron
+[Metron库]: https://github.com/cloudfoundry/loggregator/tree/develop/src/metron
 [Diego Core]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#core
 [SSH Proxy]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#ssh-proxy
 [CC-Bridge]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#bridge-components
 [Route Emitter]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#route-emitter
-[Bulletin Board System repo]: https://github.com/cloudfoundry-incubator/bbs
-[App Lifecycle binaries]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#app-lifecycles
-[File Server repo]: https://github.com/cloudfoundry-incubator/file-server
-[Understanding Application SSH]: http://docs.cloudfoundry.org/concepts/diego/ssh-conceptual.html
-[Application SSH Overview]: http://docs.cloudfoundry.org/devguide/deploy-apps/app-ssh-overview.html
-[Diego SSH Github repo]: https://github.com/cloudfoundry-incubator/diego-ssh
-[Consul repo]: https://github.com/hashicorp/consul
-[Go MySQL Driver repo]: https://github.com/go-sql-driver/mysql
-[Stager repo]: https://github.com/cloudfoundry-incubator/stager
-[CC-Uploader repo]: https://github.com/cloudfoundry-incubator/cc-uploader
-[Nsync repo]: https://github.com/cloudfoundry-incubator/nsync
-[TPS repo]: https://github.com/cloudfoundry-incubator/tps
+[公告板系统资源库]: https://github.com/cloudfoundry-incubator/bbs
+[App Lifecycle二进制文件]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#app-lifecycles
+[文件服务器]: https://github.com/cloudfoundry-incubator/file-server
+[解应用程序SSH]: http://docs.cloudfoundry.org/concepts/diego/ssh-conceptual.html
+[应用程序SSH概述]: http://docs.cloudfoundry.org/devguide/deploy-apps/app-ssh-overview.html
+[Diego SSH Github库]: https://github.com/cloudfoundry-incubator/diego-ssh
+[Consul库]: https://github.com/hashicorp/consul
+[Go MySQL驱动程序库]: https://github.com/go-sql-driver/mysql
+[Stager库]: https://github.com/cloudfoundry-incubator/stager
+[CC-Uploader库]: https://github.com/cloudfoundry-incubator/cc-uploader
+[Nsync库]: https://github.com/cloudfoundry-incubator/nsync
+[TPS库]: https://github.com/cloudfoundry-incubator/tps
 [Garden]: http://docs.cloudfoundry.org/concepts/architecture/garden.html
-[Garden repository]: https://github.com/cloudfoundry-incubator/garden
+[Garden库]: https://github.com/cloudfoundry-incubator/garden
 [CC-Bridge]: http://docs.cloudfoundry.org/concepts/diego/diego-architecture.html#bridge-components
-[Buildpack App Lifecycle]: https://github.com/cloudfoundry-incubator/buildpack-app-lifecycle
-[Docker App Lifecycle]: https://github.com/cloudfoundry-incubator/docker-app-lifecycle
+[Buildpack应用程序生命周期]: https://github.com/cloudfoundry-incubator/buildpack-app-lifecycle
+[Docker应用程序生命周期]: https://github.com/cloudfoundry-incubator/docker-app-lifecycle
 [router]: https://github.com/cloudfoundry/gorouter
-[Route-Emitter repo]: https://github.com/cloudfoundry-incubator/route-emitter
+[Route-Emitter库]: https://github.com/cloudfoundry-incubator/route-emitter
