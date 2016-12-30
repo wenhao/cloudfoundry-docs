@@ -14,7 +14,6 @@
 * [Cloud Foundry安全]
 * [容器安全]
 * [HTTP路由]
-* [可变运行栈]
 
 ### 管理员手册
 
@@ -35,4 +34,3 @@
 [Cloud Foundry安全]: general-information/cloud-foundry-concepts/Understanding-Cloud-Foundry-Security.md
 [容器安全]: general-information/cloud-foundry-concepts/Understanding-Container-Security.md
 [HTTP路由]: general-information/cloud-foundry-concepts/HTTP-Routing.md
-[可变运行栈]: general-information/cloud-foundry-concepts/Changing-Stacks.md
